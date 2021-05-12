@@ -1,6 +1,10 @@
 O que vou aprender na Trybe
 
+
 - Unix
 - Bash
 - Git
--Trabalhar em equipe
+- Trabalhar em equipe
+- HTML
+- CSS
+
