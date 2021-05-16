@@ -1,0 +1,59 @@
+ol {
+    background-color: yellow;
+}
+
+.listapar {
+    color: green;
+}
+
+.nmrprimo {
+    text-transform: uppercase;
+}
+
+h1, h3 {
+    color: red;
+}
+.italico {
+    font-size: 40px;
+    border: 1px solid black;
+}
+
+li {
+    font-size: 20px;
+}
+
+.italico2 {
+    font-weight: bold;
+}
+
+.fontblue {
+    color: blue;
+}
+
+.corfundo {
+    background-color: pink;
+}
+
+.textonegro li:hover {
+    font-weight: bold;
+}
+
+.bonus1:hover {
+    color: orange;
+}
+
+.bonus2:hover {
+   color: green;
+}
+
+.bonus3:hover {
+   color: black;
+}
+
+.bonus4:hover {
+    color: yellow;
+}
+
+.bonus5:hover {
+    color: green;
+}
