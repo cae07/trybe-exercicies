@@ -1,0 +1,46 @@
+h1 {
+  text-align: center;
+}
+
+.prime {
+  
+}
+
+.sec-third {
+  display: inline-flex;
+
+}
+
+.first {
+  background-color: rgb(235, 200, 84);
+  font-size: 20px;
+  height: 50px;
+  text-align: center;
+  width: 200px;
+  margin-bottom: -16px;
+  margin-left: 500px;
+
+}
+
+.second {
+  background-color: rgb(219, 219, 219);
+  font-size: 20px;
+  height: 50px;
+  text-align: center;
+  width: 300px;
+  margin-left: 338px;
+  display: inline-block;
+}
+
+.third {
+  background-color: rgb(170, 142, 106);
+  font-size: 20px;
+  height: 50px;
+  text-align: center;
+  width: 300px;
+}
+
+.prizes {
+  text-align: center;
+}
+
