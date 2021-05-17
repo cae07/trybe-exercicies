@@ -1,0 +1,89 @@
+body {
+  background-color: #5A9367; 
+
+}
+.indc {
+  background-color: #023618;
+  color: #fff;
+  padding: 5px 25px;
+  border-radius: 10% 80%;
+  border: 2px solid aqua;
+}
+
+li {
+  color: #fff;
+}
+
+.fonteNome {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 70px;
+  text-align: center;
+}
+.fontedescr {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: 40px;
+}
+        
+.tam1 {
+  font-size: 20px;
+    }
+
+.tam2 {
+  font-size: 22px;
+}
+
+.tam3 {
+  font-size: 24px;
+}
+
+.tam4 {
+  font-size: 26px;
+}
+
+.tam5 {
+  font-size: 28px;
+}
+
+.tam6 {
+  font-size: 30px;
+}
+
+.tam7 {
+  font-size: 32px;
+}
+
+.foto {
+  float: right;
+  padding: 5px;
+  margin-right: 250px;
+  border-radius:25% 75%;
+  background-color: aqua;
+}
+
+.description {
+  padding: 65px;
+}
+
+.sublinha {
+  text-decoration: underline;
+}
+
+.insta {background-color:#023618 ;
+  color: #fff;
+  padding: 20px 35px;
+  border-radius: 40% 120%;
+  border: 2px solid aqua;
+}
+
+.linkinsta {
+  margin: 50px;
+}
+
+.blocoinsta {
+  margin-bottom: 100px;
+  margin-left: 26px;
+}
+
+.habil {
+  color: black;
+}
