@@ -163,37 +163,36 @@ if (lucro >= 0){
 }
 
 //Exercicio 11
-let salarioBruto = 2000;
-let impostoINSS = [];
-let impostoIR =[];
-let salarioLiquido = salarioBruto - impostoINSS - impostoIR;
+let salarioBruto = 3000;
+let impostoINSS = [ ];
 
 if (salarioBruto <= 1556.94){
   impostoINSS = (salarioBruto * 8 / 100);
 }
 else if (salarioBruto <= 2594.92){
-  impostoINSS = (salarioBruto * 8 / 100);
+  impostoINSS = (salarioBruto * 9 / 100);
 }
 else if (salarioBruto <= 5189,82){
-  impostoINSS = (salarioBruto * 8 / 100);
+  impostoINSS = (salarioBruto * 11 / 100);
 
 } else {
   impostoINSS = (570.88);
 }
 
-if (salarioBruto <= 1903.98){
+let impostoIR = [ ];
+let salarioBase = salarioBruto - impostoINSS;
+
+if (salarioBase <= 1903.98){
   impostoIR = (0);
 }
-else if (salarioBruto <= 2826.65){
-  impostoIR = (salarioBruto * 7.5 / 100) + (142.8);
+else if (salarioBase <= 2826.65){
+  impostoIR = (salarioBase * 7.5 / 100) - (142.8);
 }
-else if (salarioBruto <= 4664.68){
-  impostoIR = (salarioBruto * 22.5 / 100) + (636.13);
+else if (salarioBase <= 4664.68){
+  impostoIR = (salarioBase * 22.5 / 100) - (636.13);
 
 } else {
   impostoIR = (863,36)
 }
 
-console.log(impostoINSS);
-console.log(impostoIR);
 console.log(salarioBruto - impostoINSS - impostoIR);
