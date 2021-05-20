@@ -113,8 +113,87 @@ else if(nota >= 0) {
 }
 
 //exercicio 8
-let numero1;
-let numero2;
-let numero3;
+//usei os conhecimentos da pag (https://odesenvolvedor.com.br/como-descobrir-se-um-numero-e-par-ou-impar-no-javascript_1301.html#:~:text=Como%20verificar%20se%20um%20n%C3%BAmero,6%20ou%208%20%C3%A9%20par.) Para a solução deste.
+let numero1 = 317;
+let numero2 = 12016;
+let numero3 = 117;
+
+if (numero1 % 2 == 0){
+  console.log("true");
+}
+else if (numero2 % 2 == 0){
+  console.log("true");
+}
+else if (numero3 % 2 == 0){
+  console.log("true");  
+
+} else {
+  console.log("false");
+}
 
 //exercicio 9
+let numeroImpar1 = 310;
+let numeroImpar2 = 12016;
+let numeroImpar3 = 110;
+
+if (numeroImpar1 % 2 == 1){
+  console.log("true");
+}
+else if (numeroImpar2 % 2 == 1){
+  console.log("true");
+}
+else if (numeroImpar3 % 2 ==1){
+  console.log("true");  
+
+} else {
+  console.log("false");
+}
+
+//exercicio 10
+let custo = 50;
+let venda = 120;
+let imposto = custo * 20 / 100;
+let lucro = (venda - custo - imposto) * 1000;
+
+if (lucro >= 0){
+  console.log(lucro);
+
+} else {
+  console.log("!!!ERROR!!!");
+}
+
+//Exercicio 11
+let salarioBruto = 2000;
+let impostoINSS = [];
+let impostoIR =[];
+let salarioLiquido = salarioBruto - impostoINSS - impostoIR;
+
+if (salarioBruto <= 1556.94){
+  impostoINSS = (salarioBruto * 8 / 100);
+}
+else if (salarioBruto <= 2594.92){
+  impostoINSS = (salarioBruto * 8 / 100);
+}
+else if (salarioBruto <= 5189,82){
+  impostoINSS = (salarioBruto * 8 / 100);
+
+} else {
+  impostoINSS = (570.88);
+}
+
+if (salarioBruto <= 1903.98){
+  impostoIR = (0);
+}
+else if (salarioBruto <= 2826.65){
+  impostoIR = (salarioBruto * 7.5 / 100) + (142.8);
+}
+else if (salarioBruto <= 4664.68){
+  impostoIR = (salarioBruto * 22.5 / 100) + (636.13);
+
+} else {
+  impostoIR = (863,36)
+}
+
+console.log(impostoINSS);
+console.log(impostoIR);
+console.log(salarioBruto - impostoINSS - impostoIR);
