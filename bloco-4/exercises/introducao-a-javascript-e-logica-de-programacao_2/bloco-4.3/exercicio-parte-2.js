@@ -47,3 +47,27 @@
 // }
 
 // pirInvert(10);
+
+// // exercicio 4
+
+let n = 5;
+let linha = '';
+
+let meio = (n + 1) / 2;
+let esq = meio;
+let dir = meio;
+
+for (let index = 0; index <= meio; index += 1) {
+  for(let coluna = 0; coluna <= n; coluna += 1) {
+    if(coluna > esq && coluna < dir){
+      linha = linha + "*";
+
+    } else {
+      linha = linha + " ";
+    }
+  }
+  console.log(linha);
+  linha = '';
+  dir += 1;
+  esq -= 1;
+}
