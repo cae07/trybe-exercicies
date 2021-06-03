@@ -57,30 +57,37 @@
   </head>
   <body>
     <script>
+      // exercicio 1
       let cria = document.createElement('h1');
       cria.innerText = 'Exercício 5.2 - JavaScript DOM';
       document.body.appendChild(cria);
 
+      // exercicio 2
       let div = document.createElement('div');
       div.className = 'main-content';
       document.body.appendChild(div);
 
+      // exercicio 3
       let div2 = document.createElement('div');
       div2.className = 'center-content';
       div.appendChild(div2);
 
+      // exercicio 4
       let paragrafo = document.createElement('p');
       paragrafo.innerText = 'Caê é FODA!!!'
       div2.appendChild(paragrafo);
 
+      // exercicio 5
       let div3 = document.createElement('div');
       div3.className = 'left-content';
       div.appendChild(div3);
 
+      // exercicio 6
       let div4 = document.createElement('div');
       div4.className = 'right-content';
       div.appendChild(div4);
 
+      // exercicio 7
       // consultado no site https://stackoverflow.com/questions/1232793/javascript-set-img-src
       let image = document.createElement('img');
       let imageParent = document.querySelector('.left-content');
@@ -88,6 +95,7 @@
       image.src = 'https://picsum.photos/200';
       imageParent.appendChild(image);
 
+      // exercicio 8
       let lista = ['um', 'dois', 'tres', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'];
      
       let criaLista = document.createElement('ul');
@@ -104,6 +112,7 @@
         criaLista.appendChild(listaFinal);
       }
 
+      // exercicio 9
       let criaH31 = document.createElement('h3');
       let criaH32 = document.createElement('h3');
       let criaH33 = document.createElement('h3');
@@ -111,16 +120,22 @@
       div.appendChild(criaH32);
       div.appendChild(criaH33);
 
+      // exercicio 1 parte 2
+      cria.className = 'title';
+
+      // exercicio 2 parte 2
       criaH31.className = 'description';
       criaH32.className = 'description';
       criaH33.className = 'description';
 
-      cria.className = 'title';
-
+      // exercicio 3 parte 2
       div.removeChild(div3);
 
-      div4.style.marginRight(auto);
+      // exercicio 4 parte 2
+      div4.style.marginRight = 'auto';
 
+      // exercicio 5 parte 2
+      div.style.backgroundColor = 'green';
     </script>
   </body>
 </html>
