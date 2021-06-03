@@ -57,13 +57,17 @@
   </head>
   <body>
     <script>
-    let cria = document.createElement('h1');
-    cria.innerText = 'Exercício 5.2 - JavaScript DOM';
-    document.body.appendChild(cria);
+      let cria = document.createElement('h1');
+      cria.innerText = 'Exercício 5.2 - JavaScript DOM';
+      document.body.appendChild(cria);
 
-    let div = document.createElement('div');
-    div.className = 'main-content';
-    document.body.appendChild(div);
+      let div = document.createElement('div');
+      div.className = 'main-content';
+      document.body.appendChild(div);
+
+      let div2 = document.createElement('div');
+      div2.className = 'center-content';
+      div.appendChild(div2);
     </script>
   </body>
 </html>
