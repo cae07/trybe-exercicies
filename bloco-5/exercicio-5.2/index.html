@@ -87,6 +87,22 @@
       image.className = 'small-image';
       image.src = 'https://picsum.photos/200';
       imageParent.appendChild(image);
+
+      let lista = ['um', 'dois', 'tres', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez'];
+     
+      let criaLista = document.createElement('ul');
+      div4.appendChild(criaLista);
+      criaLista.className = 'listinha';
+      let listinha = document.querySelector('.listinha');
+
+      for (i = 0; i < lista.length; i += 1) {
+        let listaExercicio = lista[i];
+
+        let listaFinal = document.createElement('li');
+        listaFinal.innerText = listaExercicio;
+
+        criaLista.appendChild(listaFinal);
+      }
     </script>
   </body>
 </html>
