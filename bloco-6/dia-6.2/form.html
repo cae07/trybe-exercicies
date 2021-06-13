@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>formulario-HTML</title>
+  <link rel="stylesheet" href="styles.css ">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+ 
+</head>
+<body>
+  <h1 class="display-2 text-center">FORMULÁRIO DE CURRICULUM</h1>
+  <form action="" method="GET">
+    <fieldset class="container">
+      <h4 class="text-muted">Informações</h4>
+      <div class="input-group mb-3">
+        <label class="form-floating mb-3" for="nome">Nome Completo:
+          <input type="text" name="nome" maxlength="40" placeholder="nome completo" id="nome" required>
+        </label>
+        <br>
+        <label class="form-floating mb-3" for="imput-email">Digite seu E-mail
+          <input type="email" name="email" placeholder="digite seu E-mail" id="imput-email" maxlength="50" required>
+        </label>
+        <br>
+        <label class="form-floating mb-3" for="numero-cpf">Digite seu CPF
+          <input type="tel" name="cpf numbers" maxlength="11" placeholder="digite apenas números" id="numero-cpf" required>
+        </label>
+        <br>
+        <label class="form-floating mb-3" for="input-endereco">Digite seu endereço
+          <input name="endereco" id="input-endereco" placeholder="rua/cep" maxlength="200" cols="30" rows="10"></textarea>
+        </label>
+        <br>
+        <label class="form-floating mb-3" for="input-cidade">Digite sua cidade
+          <input type="text" name="cidade" placeholder="digite sua cidade" maxlength="28" id="input-cidade" required>
+        </label>
+        <br>
+        <select class="input-group mb-3" name="estados" id="input-estados">
+        </select>
+        <label class="form-check form-check-inline" id="tipo-casa">
+          <input class="form-check-input" type="radio" id="tipo-casa" name="tipo" value="casa">Casa
+        </label>
+        <label class="form-check form-check-inline" id="tipo-casa">
+            <input class="form-check-input" type="radio" id="tipo-casa" name="tipo" value="ap">Apartamento
+        </label>
+      </div>
+    </fieldset>
+    <fieldset class="container">
+      <h4 class="text-muted">Dados Último Emprego</h4>
+      <textarea class="input-group mb-3" name="detalhe-curriculo" maxlength="1000" placeholder="digite aqui resumo" id="info-curriculo" cols="30" rows="8" required></textarea>
+      <br>
+      <label class="form-floating mb-3" for="cargo">cargo
+        <input type="text" placeholder="Digite aqui Cargo" maxlength="40" id="cargo" required>
+      </label>
+      <br>
+      <label class="form-floating mb-3" for="desc-cargo">cargo
+        <input type="text" placeholder="Digite aqui Descrição" maxlength="500" id="desc-cargo" required>
+      </label>
+      <br>
+      <label class="form-floating mb-3" for="data-inicio">Data de Início
+        <input type="date" name="data" id="data-inicio" placeholder="dd/mm/aaaa" required>
+      </label>
+    </fieldset>
+    <button class="btn btn-outline-success btn-lg botaoloko" type="submit" id="botao-submit">Enviar Informações</button>
+  </form>
+</body>
+</html>
