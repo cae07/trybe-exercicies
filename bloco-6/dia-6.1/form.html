@@ -5,39 +5,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>formulario-HTML</title>
-  <link rel="stylesheet" href="styles.css ">
 </head>
 <body>
   <h1>FORMULÁRIO DE CURRICULUM</h1>
   <form action="" method="GET">
     <fieldset>
       <h4>Informações</h4>
-      <label for="nome">Nome Completo:
-        <input type="text" name="nome" maxlength="40" placeholder="nome completo" id="nome" required>
-      </label>
-      <br>
-      <label for="imput-email">Digite seu E-mail
-        <input type="email" name="email" placeholder="digite seu E-mail" id="imput-email" maxlength="50" required>
-      </label>
-      <br>
-      <label for="numero-cpf">Digite seu CPF
-        <input type="tel" name="cpf numbers" maxlength="11" placeholder="digite apenas números" id="numero-cpf" required>
-      </label>
-      <br>
-      <label for="input-endereco">Digite seu endereço
-        <input name="endereco" id="input-endereco" placeholder="rua/cep" maxlength="200" cols="30" rows="10"></textarea>
-      </label>
-      <br>
-      <label for="input-cidade">Digite sua cidade
-        <input type="text" name="cidade" placeholder="digite sua cidade" maxlength="28" id="input-cidade" required>
-      </label>
-      <br>
-      <label id="tipo-casa">
-        <input type="radio" id="tipo-casa" name="tipo" value="casa">Casa
-      </label>
-        <label id="tipo-casa">
-          <input type="radio" id="tipo-casa" name="tipo" value="ap">Apartamento
+      <div class="conteiner-1">
+        <label for="nome">Nome Completo:
+          <input type="text" name="nome" maxlength="40" placeholder="nome completo" id="nome" required>
         </label>
+        <br>
+        <label for="imput-email">Digite seu E-mail
+          <input type="email" name="email" placeholder="digite seu E-mail" id="imput-email" maxlength="50" required>
+        </label>
+        <br>
+        <label for="numero-cpf">Digite seu CPF
+          <input type="tel" name="cpf numbers" maxlength="11" placeholder="digite apenas números" id="numero-cpf" required>
+        </label>
+        <br>
+        <label for="input-endereco">Digite seu endereço
+          <input name="endereco" id="input-endereco" placeholder="rua/cep" maxlength="200" cols="30" rows="10"></textarea>
+        </label>
+        <br>
+        <label for="input-cidade">Digite sua cidade
+          <input type="text" name="cidade" placeholder="digite sua cidade" maxlength="28" id="input-cidade" required>
+        </label>
+        <br>
+        <select name="estados" id="input-estados">
+        </select>
+        <label id="tipo-casa">
+          <input type="radio" id="tipo-casa" name="tipo" value="casa">Casa
+        </label>
+        <label id="tipo-casa">
+            <input type="radio" id="tipo-casa" name="tipo" value="ap">Apartamento
+        </label>
+      </div>
     </fieldset>
     <fieldset>
       <h4>Dados Último Emprego</h4>
@@ -55,6 +58,7 @@
         <input type="date" name="data" id="data-inicio" placeholder="dd/mm/aaaa" required>
       </label>
     </fieldset>
+    <button type="submit" id="botao-submit">Enviar Informações</button>
   </form>
 </body>
 </html>
