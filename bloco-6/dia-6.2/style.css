@@ -16,3 +16,7 @@ h1 {
   align-items: center;
   background-color: rgb(212, 212, 212);
 }
+
+#input-estados {
+  background-color: white;
+}
