@@ -21,4 +21,12 @@ console.log(`Os números ${oddsAndEvens} se encontram ordenados de forma crescen
 
 oddsAndEvens.sort((a,b) => b-a);
 console.log(`Os números ${oddsAndEvens} se encontram ordenados de forma decrescente.`);
+
 // Exercicio 3
+const fatorial = n => {
+  if (n > 1) {
+    return n * fatorial(n - 1);
+  }
+  return n;
+}
+console.log(fatorial(5));
