@@ -19,7 +19,7 @@ oddsAndEvens.sort((a,b) => a - b);
 
 console.log(`Os números ${oddsAndEvens} se encontram ordenados de forma crescente.`);
 
-oddsAndEvens.sort((a,b) => b-a);
+oddsAndEvens.sort((a,b) => b - a);
 console.log(`Os números ${oddsAndEvens} se encontram ordenados de forma decrescente.`);
 
 // Exercicio 3 arrow function comum
