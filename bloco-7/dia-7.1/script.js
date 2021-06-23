@@ -32,3 +32,14 @@ function fatorial(numero) {
 }
 
 console.log(fatorial(4));
+//  mesmo exercicio com Arrow Functions
+const fatorial = numero => {
+  let fatorN = numero;
+  
+  for (let fator = 1; fator < numero; fator += 1) {
+    fatorN *= fator;
+  }
+  return fatorN;
+}
+
+console.log(fatorial(4));
