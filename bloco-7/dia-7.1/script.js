@@ -33,6 +33,7 @@ function fatorial(numero) {
 
 console.log(fatorial(4));
 //  mesmo exercicio com Arrow Functions
+
 const fatorial = numero => {
   let fatorN = numero;
   
@@ -43,3 +44,12 @@ const fatorial = numero => {
 }
 
 console.log(fatorial(4));
+
+//  Fazendo em ternary operator 
+// const fatorial = numero => (
+//   numero > 0 ? numero *= (numero - 1) : numero
+// )
+
+// console.log(fatorial(4));
+
+//  Exercicio 2 - Parte 2
