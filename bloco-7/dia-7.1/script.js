@@ -20,3 +20,15 @@ const oddsAndEvens = [13, 3, 4, 10, 7, 2];
 oddsAndEvens.sort((a, b) => a - b);
 
 console.log(`Os números ${oddsAndEvens} se encontram ordenados de forma crescente!`);
+
+//  Exercicio 1 - Parte 2
+function fatorial(numero) {
+  let fatorN = numero;
+
+  for (let fator = 1; fator < numero; fator += 1) {
+    fatorN *= fator;
+  }
+  return fatorN;
+}
+
+console.log(fatorial(4));
