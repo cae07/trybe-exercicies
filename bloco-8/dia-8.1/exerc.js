@@ -26,4 +26,13 @@ const formulario = nome => ({nome: nome, email: `${nome.split(' ').join('')}@try
 
 console.log (newEmployees());
 
+//  Exercicio 2 - Parte 1
+const playPlayer = Math.floor(Math.random() * 5) + 1;
+const getRandom = Math.floor(Math.random() * 5) + 1;
+
+const result = () => playPlayer === getRandom ? `Parabéns você ganhou` : `Tente Novamente`;
+
+console.log(playPlayer);
+console.log(getRandom);
+console.log(result());
 
