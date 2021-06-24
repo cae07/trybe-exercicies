@@ -34,3 +34,28 @@ const sorteio = () => Math.floor(Math.random() * 5) + 1;
 const result = (bet, sorteio) => playPlayer() === sorteio() ? `Parabéns você ganhou` : `Tente Novamente`;
 
 console.log(result(playPlayer, sorteio));
+
+//  Exercicio 3
+
+const rightAnswers = ['A', 'C', 'B', 'D', 'A', 'A', 'D', 'A', 'D', 'C'];
+const studentAnswers = ['A', 'N.A', 'B', 'D', 'A', 'C', 'N.A', 'A', 'D', 'B'];
+
+const check = () => {
+  const pontos = 0;
+
+  for (let checagem = 0; checagem < rightAnswers.length; checagem += 1) {
+    if (rightAnswers[checagem] === studentAnswers[checagem]) {
+      pontos += 1;
+    } else if (rightAnswers[checagem] === 'N.A') {
+      pontos = pontos;
+    }
+    pontos -= 0.5;
+  }
+  return pontos;
+  console.log(pontos)
+}
+console.log(check());
+
+const result = (rightAnswers, studentAnswers, check) => `Sua nota é ${check()}`;
+
+console. log(result());
