@@ -57,5 +57,20 @@ GROUP BY s.staff_id;
 -- 7. exiba o id do ator , nome , id do filme e título do filme ,
 -- usando as tabelas actor , film_actor e film
 
+SELECT a.actor_id, a.first_name, f.film_id, f.title
+FROM sakila.actor AS a
+INNER JOIN sakila.film as f
+INNER JOIN sakila.film_actor as fa
+ON a.actor_id = fa.actor_id
+AND f.film_id = fa.film_id;
+
+
+
+
+
+
+
+
+
 
 
