@@ -23,4 +23,34 @@ FROM sakila.customer AS c
 INNER JOIN sakila.address AS a
 ON c.address_id = a.address_id;
 
+-- 4. Exiba o nome , email , id do endereço , endereço e distrito dos
+-- clientes que moram no distrito da California e que contêm "rene"
+-- em seus nomes
+
+SELECT c.first_name, c.email, c.address_id, a.address, a.district
+FROM sakila.customer AS c
+INNER JOIN sakila.address AS a
+ON a.district LIKE 'california'
+AND c.first_name LIKE '%rene%';
+
+-- 5. Exiba o nome e a quantidade de endereços dos clientes cadastrados.
+-- Ordene seus resultados por nomes de forma decrescente.
+-- Exiba somente os clientes ativos
+
+SELECT customer.first_name, COUNT(address.address) AS contagem
+FROM sakila.customer AS customer
+INNER JOIN sakila.address AS address
+ON customer.address_id = address.address_id
+WHERE customer.active
+GROUP BY customer.first_name;
+
+-- 6. Monte uma query que exiba o nome , sobrenome e a média de valor
+-- ( amount ) paga aos funcionários no ano de 2006. Use as tabelas
+-- payment e staff 
+
+
+
+
+
+
 
