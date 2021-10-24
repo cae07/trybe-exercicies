@@ -1,9 +1,9 @@
 -- Exercício 1: Utilizando o INNER JOIN , encontre as vendas nacionais ( domestic_sales )
 -- e internacionais ( international_sales ) de cada filme.
-SELECT P.title, B.domestic_sales, B.international_sales
-FROM Pixar.Movies P
+SELECT M.title, B.domestic_sales, B.international_sales
+FROM Pixar.Movies M
 INNER jOIN Pixar.BoxOffice B
-ON P.id = B.movie_id;
+ON M.id = B.movie_id;
 
 -- Exercício 2: Utilizando o INNER JOIN , faça uma busca que retorne o número de vendas
 -- para cada filme que possui um número maior de vendas internacionais ( international_sales )
@@ -39,6 +39,51 @@ FROM Pixar.Theater AS theater
 RIGHT JOIN Pixar.Movies AS movies
 ON theater.id = movies.theater_id
 ORDER BY theater.name;
+
+-- Exercício 6: Faça duas buscas, uma utilizando SUBQUERY e outra utilizando INNER JOIN,
+-- que retornem os títulos dos filmes que possuem avaliação maior que 7.5.
+-- utilizando INNER JOIN
+SELECT M.title, B.rating
+FROM Pixar.Movies AS M
+INNER JOIN Pixar.BoxOffice AS B
+ON M.id = B.movie_id
+WHERE B.rating > 7.5;
+
+-- Utilizando SUBQUERY
+-- Exercício 6: Faça duas buscas, uma utilizando SUBQUERY e outra utilizando INNER JOIN,
+-- que retornem os títulos dos filmes que possuem avaliação maior que 7.5.
+SELECT rating,
+(SELECT title FROM Pixar.Movies
+WHERE id = Pixar.BoxOffice.movie_id) AS Titulo
+FROM Pixar.BoxOffice
+WHERE Pixar.BoxOffice.rating > 7.5;
+
+
+-- Exercício 7: Faça duas buscas, uma utilizando SUBQUERY e outra utilizando INNER JOIN,
+-- que retornem as avaliações dos filmes lançados depois de 2009.
+-- utilizando INNER JOIN
+
+SELECT M.title, B.rating
+FROM Pixar.Movies AS M
+INNER JOIN Pixar.BoxOffice AS B
+ON M.id = B.movie_id
+WHERE M.year > 2009;
+
+-- usando SUBQUERY
+SELECT title,
+	(
+    SELECT rating
+    FROM Pixar.BoxOffice
+    WHERE Pixar.Movies.id = movie_id
+    ) AS B
+FROM Pixar.Movies
+WHERE year > 2009;
+
+
+
+
+-- Exercício 8: Utilizando o EXISTS , selecione o nome e localização dos cinemas que possuem filmes em cartaz.
+-- Exercício 9: Utilizando o EXISTS , selecione o nome e localização dos cinemas que não possuem filmes em cartaz.
 
 
 
