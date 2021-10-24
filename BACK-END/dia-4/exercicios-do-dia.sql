@@ -79,10 +79,16 @@ SELECT title,
 FROM Pixar.Movies
 WHERE year > 2009;
 
-
-
-
 -- Exercício 8: Utilizando o EXISTS , selecione o nome e localização dos cinemas que possuem filmes em cartaz.
+SELECT name, location	
+FROM Pixar.Theater AS T
+WHERE EXISTS (
+	SELECT * FROM Pixar.Movies
+	WHERE theater_id = T.id
+);
+
+
+
 -- Exercício 9: Utilizando o EXISTS , selecione o nome e localização dos cinemas que não possuem filmes em cartaz.
 
 
