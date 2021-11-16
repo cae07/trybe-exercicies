@@ -1,0 +1,43 @@
+use('test');
+db.inventory.find(
+  { price: { $not: { $gt: 1.99 } } }
+  // diferente do $lte, se o campo price não existir, retorna o documento
+  // e tudo onde price <= 1.99
+);
+
+use('test');
+db.inventory.find(
+  { $or: [{ qty: { $lt: 20} }, { price: 10 } ]}
+// retorna tudo onde qty < 20 ou price = 10
+);
+
+use('test');
+db.inventory.find(
+  { $nor: [{ price: 1.99 }, { sale: true }] }
+  // não é pra trazer nem documento com price === 1.99
+  // nem sale === true
+);
+
+use('test');
+db.inventory.find({
+  $and: [
+    { price: { $ne: 1.99 } },
+    // tudo que price não seja igual a 1.99 E
+    { price: { $exists: true } }
+    // campo price exista
+  ]
+});
+
+// ============================================
+// todos docs que price seja entre 0.99 e 1.99 e
+// sale === true OU qty < 20
+use('test');
+db.inventory.find({
+  $and: [
+    { price: { $gt: 0.99, $lt: 1.99 } },
+    { $or: [
+      { sale: true },
+      { qty: { $lt: 20 } }
+    ]}
+  ]
+});
