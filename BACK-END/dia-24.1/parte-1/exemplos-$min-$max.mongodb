@@ -1,0 +1,97 @@
+use('colection_exemplo');
+db.collection.insertMany([
+  { _id: 1, campo: 25 },
+  { _id: 2, campo: 50 },
+  { _id: 3, campo: 100 }
+]);
+
+use('colection_exemplo');
+db.collection.updateMany(
+  {}, // atualiza todos
+  { $max: { campo: 75 } } 
+  // atualiza todos os campos menores que 75
+  // para 75
+);
+
+use('colection_exemplo');
+db.collection.find();
+
+use('colection_exemplo');
+db.collection.updateMany(
+  {},
+  { $min: { campo: 42 } }
+  // atualiza todos os campos maiores que 42
+  // para 42
+);
+
+use('colection_exemplo');
+db.collection.find();
+
+// =================================
+use('conteudo_trybe');
+db.scores.insertOne(
+  { _id: 1, highscore: 800, lowscore: 200 }
+);
+
+use('conteudo_trybe');
+db.scores.updateOne(
+  { _id: 1 },
+  { $min: { lowscore: 150 } }
+  // ele vai alterar de 200 para 150 pq 200 é maior q 150
+);
+
+use('conteudo_trybe');
+db.scores.find({ _id: 1 });
+
+use('conteudo_trybe');
+db.scores.updateOne(
+  { _id: 1 },
+  { $min: { lowscore: 250 } }
+  // não altera nada pq lowscore é menor q 250
+);
+
+use('conteudo_trybe');
+db.scores.updateOne(
+  { _id: 1 },
+  { $max: { highscore: 950 } }
+  // altera o valor para 950 pq é maior que 800
+);
+
+use('conteudo_trybe');
+db.scores.find({ _id: 1 });
+
+use('conteudo_trybe');
+db.scores.updateOne(
+  { _id: 1 },
+  { $max: { highScore: 870 } }
+  // não altera nada pq highScore é maior q 870
+);
+
+// ================================================
+// COMPARANDO DATAS
+
+use('conteudo_trybe');
+db.tags.insertOne(
+  { 
+    _id: 1,
+    desc: "crafts",
+    dateEntered: ISODate("2019-10-01T05:00:00Z"),
+    // 01/10/2019 - 5H:00M:00S
+    dateExpired: ISODate("2019-10-01T16:38:16Z")
+    // 01/10/2019 - 16H:38M:16S
+  }
+);
+
+use('conteudo_trybe');
+db.tags.updateOne(
+  { _id: 1 },
+  {
+    $min: { dateEntered: new Date("2019-09-25") },
+    // altera pq 25/09/2019 é anterior à 01/10/2019
+    $max: { dateExpired: new Date("2019-10-02") }
+    // altera pq 02/10/2019 é posterior à 01/10/2019
+  }
+);
+
+use('conteudo_trybe');
+db.tags.find();
