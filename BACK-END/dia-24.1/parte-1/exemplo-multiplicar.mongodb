@@ -1,0 +1,49 @@
+use('conteudo_trybe');
+db.products.insertOne(
+  { _id: 1, item: "ABC", price: 10.99, qty: 25 }
+);
+
+use('conteudo_trybe');
+db.products.updateOne(
+  { _id: 1 },
+  { $mul: { price: 1.25, qty: 2 } }
+  // multiplica o preço por 1.25 e a quantidade por 2
+  // e já atualiza o bd
+);
+
+use('conteudo_trybe');
+db.products.find({ _id: 1 });
+
+
+// exemplo de multiplicador se não existir o campo 
+// ele adiciona o campo e atribui o valor 0 do mesto tipo
+// numerico do multiplicador
+use('conteudo_trybe');
+db.products.insertOne(
+  { _id: 2, item: "unknown"}
+);
+
+use('conteudo_trybe');
+db.products.updateOne(
+  { _id: 2 },
+  { $mul: { price: NumberLong("100") } } 
+  // nao importa o valor, só o tipo numerico
+);
+
+use('conteudo_trybe');
+db.products.find({ _id: 2 });
+
+// pode multiplicar valores com tipos diferentes
+use('conteudo_trybe');
+db.products.insertOne(
+  { _id: 3,  item: "XYZ", price: NumberLong("10") }
+);
+
+use('conteudo_trybe')
+db.products.updateOne(
+  { _id: 3 },
+  { $mul: { price: NumberInt(5) } }
+);
+
+use('conteudo_trybe');
+db.products.find({ _id: 3 });

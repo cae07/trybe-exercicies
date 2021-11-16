@@ -1,0 +1,53 @@
+db.inventory.updateOne(
+  { item: "paper" }, // atualizar onde o item = paper
+  { $set: { "size.uom": "cm", status: "P" } }
+);
+
+use('conteudo_trybe');
+db.products.insertOne({
+  _id: 100,
+  sku: "abc123",
+  quantity: 250,
+  instock: true,
+  reorder: false,
+  details: {
+    model: "14Q2",
+    make: "xyz"
+  },
+  tags: ["apparel", "clothing"],
+  ratings: [
+    { by: "ijk", rating: 4 }
+  ]
+});
+
+use('conteudo_trybe');
+db.products.updateOne(
+  { _id: 100 }, // atualizar onde o id = 100
+  { $set: { // setar
+    quantity: 500, 
+    details: {
+      model: "14Q3",
+      make: "xyz"
+    },
+    tags: [
+      "coats",
+      "outerwear",
+      "clothing"
+    ]
+  }}
+);
+
+use('conteudo_trybe');
+db.products.updateOne(
+  { _id: 100 },
+  { $set: { "details.make": "zzzz" } } // atualiza o subdocumento make
+);
+
+use('conteudo_trybe');
+db.products.updateOne(
+  { _id: 100 },
+  { $set: {
+    "tags.1": "rain gear", // atualiza o array tags no indice 1
+    "ratings.0.rating": 2 // atualiza o array com o objeto na posiçao 0 e atualiza a chave rating
+  }}
+);
