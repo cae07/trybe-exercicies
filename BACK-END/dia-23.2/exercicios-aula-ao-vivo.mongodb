@@ -1,0 +1,70 @@
+use('class');
+db.filmes.find();
+// 1. Trazer os filmes onde o diretor é `Quentin Tarantino` e `avalicao.bom`
+// esteja entre 5 e 10.
+use('class');
+db.filmes.find(
+  { diretor: "Quentin Tarantino", "avaliacao.bom": { $gte: 5, $lte: 10 } }
+);
+
+// 2. Trazer os filmes onde o ano é 2014 e `avaliacao.ruim` **não** esteja entre
+// 5 e 10.
+
+use('class');
+db.filmes.find({
+  $and: [
+    { ano: 2014 },
+    { "avaliacao.ruim": { $not: { $gte: 5, $lte: 10 } } }
+  ]
+});
+
+// 3. Trazer os filmes onde o diretor `Christopher Nolan` ou `Peter Jackson`
+use('class');
+db.filmes.find(
+  { diretor: { $in: ["Christopher Nolan", "Peter Jackson"] } }
+);
+
+// 4. Filtre os filmes do `Steven Spielberg` que nem o nome seja `Indiana Jones
+// e a Última Cruzada` nem o ano seja 1989. (Usando o operador $nor)
+use('class');
+db.filmes.find({
+  $and: [
+    { diretor: "Steven Spielberg" },
+    { $nor: [{ titulo: "Indiana Jones e a Última Cruzada" }, { ano: 1989 }] }
+  ]
+});
+
+// 5. Insira um filme apenas com o título `Um Lugar Silencioso 2` como atributo.
+use('class');
+db.filmes.insertOne(
+  { titulo: "Um Lugar Silencioso 2" }
+);
+
+// 6. Buscar todos os filmes que não possuam o atributo `diretor`
+use('class');
+db.filmes.find(
+  { diretor: { $exists: false }}
+);
+
+// 7. Ordenar por diretor e título em ordem alfabética, ano em forma
+// decrescente, avaliacao.bom em order decrescente. (Esconder
+// avaliacao.ruim e avaliacao.medio)
+use('class');
+db.filmes.find(
+  {},
+  { "avaliacao.medio": false, "avaliacao.ruim": false }
+).sort(
+  { diretor: 1, titulo: 1 }, { ano: -1 }, { "avaliacao.bom": 1 }
+);
+
+// 8. Remover todos os filmes de `Quentin Tarantino`
+use('class');
+db.filmes.remove(
+  {diretor: "Quentin Tarantino" }
+);
+
+// 9. Confira se os filmes foram realmente removidos
+use('class');
+db.filmes.find(
+  { diretor: "Quentin Tarantino" }
+);
