@@ -1,0 +1,29 @@
+use('conteudo_trybe');
+db.products.find({ _id:1 });
+
+use('conteudo_trybe');
+db.products.updateOne(
+  { _id: 1 },
+  { $set: { 
+    sku: "abc123", // cria o campo se não existir
+    qty: 10,
+    metrics: { // cria o campo se não existir
+      orders: 2,
+      ratings: 3.5
+    }
+  }}
+);
+
+use('conteudo_trybe');
+db.products.updateMany(
+  { _id: 1 },
+  { $inc: {
+    qty: -2,
+    // decrementa 2
+    "metrics.orders": 1
+    // acrescenta 1 no subdocumento orders
+  } }
+);
+
+use('conteudo_trybe');
+db.products.find({ _id: 1 });
