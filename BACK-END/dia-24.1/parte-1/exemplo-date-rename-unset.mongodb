@@ -1,0 +1,48 @@
+// inserir um documento exemplo $currentDate
+// $currentDate => insere data e hora atual
+use('conteudo_trybe');
+db.customers.insertOne(
+  { _id: 1, status: "a", lastModified: ISODate("2013-10-01T01:11:18.965Z") }
+);
+
+// alterar documento
+use('conteudo_trybe');
+db.customers.updateOne(
+  { _id: 1 },
+  { $currentDate: {
+    lastModified: true,
+    "cancellation.date": { $type: "timestamp" }
+  }, $set: {
+    "cancellation.reason": "user request",
+    status: "D",
+  } }
+);
+
+// ========================== // ===============
+// $rename => renomeia campos
+// exemplo $rename
+use('conteudo_trybe');
+db.fruits.insertOne(
+  { _id: 1, name: "Bananas", qty: 100, stock: true }
+);
+
+use('conteudo_trybe');
+db.fruits.updateOne(
+  { name: "Bananas" },
+  { $rename: { name: "productName" } }
+);
+// ========================== // ===============
+// $unset => remove campos
+// exemplo $unset
+
+use('conteudo_trybe');
+db.fruits.updateOne(
+  { _id: 1 },
+  { $unset: { qty: "" } }
+);
+
+
+
+
+use('conteudo_trybe');
+db.fruits.findOne();
