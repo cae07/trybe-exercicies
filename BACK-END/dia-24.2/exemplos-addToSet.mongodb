@@ -1,0 +1,49 @@
+// $addToSet
+// 1. Se você utilizá-lo em um campo que não existe no documento alterado,
+// ele criará um campo do tipo array com o valor especificado na operação;
+
+// 2. Se você utilizá-lo em um campo já existente no documento, mas esse campo
+// não for um array , a operação não funcionará;
+
+// 3. Se o valor passado for um documento, o MongoDB o considerará como duplicado
+// se um documento existente no array for exatamente igual ao documento a ser
+// adicionado, ou seja, possui os mesmos campos com os mesmos valores, e esses
+// campos estão na mesma ordem
+
+// db a considerar
+db.teste.insertOne(
+  {
+    _id: 1,
+    item: "polarizing_filter",
+    tags: ["electronics", "camera"],
+  },
+);
+
+// adiciona o elemento "accessories" ao array tags desde que "accessories"
+// não exista no array
+db.teste.updateOne(
+  { _id: 1 },
+  { $addToSet: { tags: "acessories" } },
+);
+
+// Com o modificador $each
+// add doc na coleção
+db.teste.insertOne(
+  { _id: 2, item: "cable", tags: ["electronics", "supplies"] },
+);
+
+// utiliza o operador $addToSet e o modificador $each para adicionar
+// alguns elementos a mais no array tags
+db.teste.updateOne(
+  { _id: 2 },
+  {
+    $addToSet: {
+      tags: {
+        $each: ["camera", "electronics", "acessories"],
+        // add camera e acessories. / pq electronics já existe no array
+      },
+    },
+  },
+);
+
+db.teste.find({ _id: 2 });
