@@ -106,3 +106,47 @@ db.movies.updateOne(
 
 use('class');
 db.movies.find({ title: "Home Alone" });
+
+// Exercício 9: Adicione o campo character com o valor Marv ao array de cast
+// em que o campo actor seja igual a Daniel Stern no filme Home Alone .
+use('class');
+db.movies.updateOne(
+  { title: "Home Alone", "cast.actor": "Daniel Stern" },
+  { $set: { "cast.$.character": "Marv" } },
+  // add "$" para dizer que quando chegar na posição do array
+  // em que o filtro seja cast.actor = daniel stern, para setar o "marv"
+);
+
+// Exercício 10: Crie um array de documentos chamado cast
+// para o filme Batman com os seguintes dados:
+use('class');
+db.movies.updateOne(
+  { title: "Batman" },
+  { $set: { cast: [
+    { "character": "Batman" },
+    { "character": "Alfred" },
+    { "character": "Coringa" }
+  ] } },
+);
+
+use('class');
+db.movies.find({ title: "Batman" });
+
+// Exercício 11: Produza três querys para o filme Batman :
+// - Adicione o campo actor , que deve ser um array com o valor
+// Christian Bale , ao array de cast em que o campo character
+// seja igual a Batman ;
+use('class');
+db.movies.updateOne(
+  { title: "Batman", "cast.character": "Batman" },
+  // para alterar onde o array.chave = Batman, mas não sei a posiçao
+  { $set: { "cast.$.actor": "Christian Bale" } }
+  // add "$" para dizer que na posiçao do filtro é para setar
+);
+
+// - Adicione o campo actor , que deve ser um array com o valor
+// Michael Caine , ao array de cast em que o campo character seja
+// igual a Alfred ;
+// - Adicione o campo actor , que deve ser um array com o valor
+// Heath Ledger , ao array de cast em que o campo character seja
+// igual a Coringa .
