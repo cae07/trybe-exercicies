@@ -1,0 +1,43 @@
+// OPERADOR $text
+// faz busca textual em um campo indexado
+//  PRIMEIRO PRECISAMOS CRIAR UM ÍNDICE
+db.collection.createIndex({ chave: "text" });
+
+// BD exemplo
+use('test');
+db.articles.insertMany([
+  { _id: 1, subject: "coffee", author: "xyz", views: 50 },
+  { _id: 2, subject: "Coffee Shopping", author: "efg", views: 5 },
+  { _id: 3, subject: "Baking a cake", author: "abc", views: 90  },
+  { _id: 4, subject: "baking", author: "xyz", views: 100 },
+  { _id: 5, subject: "Café Com Leite", author: "abc", views: 200 },
+  { _id: 6, subject: "Сырники", author: "jkl", views: 80 },
+  { _id: 7, subject: "coffee and cream", author: "efg", views: 10 },
+  { _id: 8, subject: "Cafe com Leite", author: "xyz", views: 10 }
+]);
+
+// criar indice
+use('test');
+db.articles.createIndex({ subject: "text" });
+
+// EXEMPLO 1 - procurando um único termo
+// utiliza os operadores $text e $search para buscar
+// todos os documentos que contenham o termo coffee
+use('test');
+db.articles.find(
+  { $text: { $search: "coffee" } },
+);
+
+// EXEMPLO 2 - procurando qualquer um dos termos especificados
+// Você pode procurar por vários termos passando
+// uma string delimitada por espaços
+use('test');
+db.articles.find(
+  { $text: { $search: "bake coffee cake" } },
+);
+
+// EXEMPLO 3 - procurando por uma frase
+use('test');
+db.articles.find({ $text: { $search: '"coffee shop"'} });
+// colocando aspas simples e dentro aspas duplas para procurar
+// palavra exata
