@@ -1,0 +1,71 @@
+//  OPERADOR $all
+// seleciona todos docs em que um array contenha todos os elementos
+// especificados, não importando quantos elem tem no array
+// nem a ordem em que estão
+// exemplo de $all 
+db.collection.find(
+  { chave: { $all: ['elem1', 'elem2'] } },
+);
+// e seu equivalente $and
+db.collection.find(
+  {
+    $and: [
+      { chave: 'elem1' },
+      { chave: 'elem2' },
+    ],
+  },
+);
+// -----------------------//---------------------//--------------
+// OPERADOR $elemMatch
+// seleciona os documentos que contêm um campo do tipo array
+// com pelo menos um elemento que satisfaça todos os critérios
+// de seleção especificados
+// db para exemplo
+use('test');
+db.scores.insertMany([
+  { _id: 1, results: [82, 85, 88] },
+  { _id: 2, results: [75, 89, 88] },
+]);
+// seleciona somente os documentos em que o array results contém
+// ao menos um elemento que seja maior ou igual a 80 e menor que 85
+use('test');
+db.scores.find(
+  { results: { $elemMatch: { $gte: 80, $lt: 85 } } },
+);
+
+// EXEMPLO PARA SUBDOCUMENTOS
+// DB EXEMPLO
+use('test');
+db.survey.insertMany([
+  {
+  _id: 1,
+  results: [
+    { product: "abc", score: 10 },
+    { product: "xyz", score: 5 }
+  ]
+},
+{
+  _id: 2,
+  results: [
+    { product: "abc", score: 8 },
+    { product: "xyz", score: 7 }
+  ]
+},
+{
+  _id: 3,
+  results: [
+    { product: "abc", score: 7 },
+    { product: "xyz", score: 8 }
+  ]
+}
+]);
+
+// documentos em que o array results contenha ao menos um elemento
+// subdocumento com o campo product igual a xyz e o campo score
+// maior ou igual a 8
+use('test');
+db.survey.find(
+  { results: {
+    $elemMatch: { product: "xyz", score: { $gte: 8 } },
+  } },
+);
