@@ -1,0 +1,22 @@
+// OPERADOR $regex
+// usa expressões regulares, lembra o LIKE  do sql
+// DB exemplo
+use('test');
+db.products.insertMany([
+  { _id: 100, sku: "abc123", description: "Single line description." },
+  { _id: 101, sku: "abc789", description: "First line\nSecond line" },
+  { _id: 102, sku: "xyz456", description: "Many spaces before     line" },
+  { _id: 103, sku: "xyz789", description: "Multiple\nline description" }
+]);
+// seleciona todos os documentos em que o
+// campo sku "termine" com "789" 
+use('test');
+db.products.find(
+  { sku: { $regex: /789$/ } },
+);
+
+// retorna palavras "começando" com ABC e usar caseSensitive
+use('test');
+db.products.find(
+  { sku: { $regex: /^ABC/i } },
+);

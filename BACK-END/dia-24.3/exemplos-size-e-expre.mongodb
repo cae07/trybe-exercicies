@@ -1,0 +1,17 @@
+// OPERADOR $size
+// busca docs com tamanho de array especificado
+// exemplo
+db.collection.find(
+  { chave: { $size: 3 } },
+  // busca todo doc com chave.length === 3
+);
+// -------------------------//------------------------------
+// OPERADOR $expr
+// comparar campos em um mesmo doc
+// exemplo
+db.collectio.find(
+  {
+    $expre: { $lt: ['chave1', 'chave2'] },
+  // ele vai ler chave1 - $lt - chave2
+  },
+);

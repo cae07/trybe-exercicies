@@ -1,0 +1,9 @@
+// OPERADOR $mod
+// para fazer operações que encontra o resto da divisao
+// tipo o 10 % 2 === 0 exemplo
+
+// exemplo de query
+db.collection.find(
+  { chave: { $mod; [4, 0] } },
+  // devolve os docs onde o resto da div por 4 seja 0
+);
