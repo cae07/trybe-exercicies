@@ -28,7 +28,7 @@ db.movies.updateOne(
   { $push: { ratings: { $each: [78, 52, 95, 102] } } },
 );
 
-db.movies.find({ title: "Godzil
+db.movies.find({ title: "Godzilla" });
 
 // 5. Adicione um array chamado ratings ao filme Home Alone com
 // os seguintes valores: [200, 99, 65] .
@@ -38,11 +38,65 @@ db.movies.updateOne(
 );
 
 db.movies.find({ title: "Home Alone" });
-// 6. Retorne todos os filmes com ratings maior do que 103 , exibindo apenas os campos title e ratings .
-// 7. Retorne todos os filmes com ratings entre 100 e 105 , exibindo apenas os campos title e ratings .
-// 8. Retorne todos os filmes com ratings entre 64 e 105 e divisíveis por 9 , exibindo apenas os campos title e ratings .
-// 9. Retorne os filmes da categoria adventure e com ratings maior do que 103 , exibindo apenas os campos title , ratings e category .
-// 10. Retorne somente o título de todos os filmes com dois elementos no array category .
+// 6. Retorne todos os filmes com ratings maior do que 103 ,
+// exibindo apenas os campos title e ratings .
+db.movies.find(
+  { ratings: { $elemMatch: { $gt: 103 } } },
+  // usando o $elemMatch
+  { _id: 0, title: 1, ratings: 1 },
+);
+
+db.movies.find(
+  { ratings: { $gt: 103 } },
+  // usando só o $gt dá na mesma
+  { _id: 0, title: 1, ratings: 1}
+)
+
+// 7. Retorne todos os filmes com ratings entre 100 e 105 ,
+// exibindo apenas os campos title e ratings .
+db.movies.find(
+  { ratings: { $elemMatch: { $gte: 100, $lte: 105 } } },
+  { _id: 0, title: 1, ratings: 1 },
+);
+
+// neste caso retorna errado, pq????
+db.movies.find(
+  { ratings: { $gt: 100, $lt: 105 } },
+  { _id: 0, title: 1, ratings: 1 },
+);
+
+// 8. Retorne todos os filmes com ratings entre 64 e 105 e
+// divisíveis por 9 , exibindo apenas os campos title e ratings 
+db.movies.find(
+  {
+    $and: [
+      { ratings: { $elemMatch: { $gte: 64, $lte: 105 } } },
+      { ratings: { $mod: [9, 0] } },
+    ],
+  },
+  { _id: 0, title: 1, ratings: 1 },
+);
+
+// 9. Retorne os filmes da categoria adventure e com ratings
+// maior do que 103 , exibindo apenas os campos title ,
+// ratings e category .
+db.movies.find(
+  {
+    $and: [
+      { category: "adventure" },
+      { ratings: { $gt: 103 } },
+    ],
+  },
+  { _id: 0, title: 1, ratings: 1, category: 1 },
+);
+
+// 10. Retorne somente o título de todos os filmes com
+// dois elementos no array category .
+db.movies.find(
+  { category: { $size: 2 } },
+  { _id: 0, title: 1 },
+);
+
 // 11. Retorne somente o título de todos os filmes com quatro elementos no array ratings .
 // 12. Busque os filmes em que o módulo 5 do campo budget seja 0 e que o array category tenha tamanho 2 .
 // 13. Retorne os filmes da categoria "sci-fi" ou que possua o ratings maior do que 199 , exibindo apenas os campos title , ratings e category .
