@@ -1,0 +1,10 @@
+// EXEMPLO DE $unwind
+// insere doc para exemplo
+db.inventory.insertOne({ _id: 7, item: "ABC1", sizes: ["S", "M", "L"] });
+
+// utilizando $unwind como estágio do pipeline
+db.inventory.aggregate([
+  { $unwind: "$sizes" },
+]);
+// Note que temos a "expansão" do array sizes ,
+// e a saída são três documentos com os valores _id e item preservados.
