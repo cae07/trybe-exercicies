@@ -4,6 +4,6 @@
 
 // exemplo de query
 db.collection.find(
-  { chave: { $mod; [4, 0] } },
+  { chave: { $mod: [4, 0] } },
   // devolve os docs onde o resto da div por 4 seja 0
 );

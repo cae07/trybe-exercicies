@@ -1,0 +1,8 @@
+FROM nginx
+COPY ./missao_trybe.html /usr/share/nginx/html
+EXPOSE 80
+ENV TEST_URL=http//localhost:3000/api
+WORKDIR /usr/share/nginx/html
+RUN ls
+ENTRYPOINT [ "/usr/sbin/nginx" ]
+CMD ["-g", "daemon off;"]
