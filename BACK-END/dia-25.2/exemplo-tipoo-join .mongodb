@@ -19,14 +19,15 @@ db.orders.aggregate([
             $expr: {
               $and: [
                 { $eq: [ "$stock_item", "$$order_item" ] },
-                // para referenciar tabela pai precisa de $$
+            // para referenciar variaveis def em let precisa de $$
                 { $gte: [ "$instock", "$$order_qty" ] },
-                // para referenciar tabela pai precisa de $$
+            // para referenciar variaveis def em let precisa de $$
               ],
             },
           },
         },
         { $project: { stock_item: 0, _id: 0 } },
+        // exclui esses campos da coleção warehouse
       ],
       as: "stockdata",
     },
