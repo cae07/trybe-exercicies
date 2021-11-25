@@ -1,0 +1,109 @@
+// OPERADOR $lookup
+// para fazer o join com outras coleçoes
+// Existem quatro parâmetros básicos para montar um $lookup :
+// - from : uma coleção no mesmo database para executar o join 
+
+// - localField : o campo da coleção de onde a operação de agregação
+// está sendo executada. Será comparado por igualdade com o campo
+// especificado no parâmetro foreignField ;
+
+// - foreignField : o campo da coleção especificada no parâmetro
+// from que será comparado com o campo localField por igualdade simples;
+
+// - as : o nome do novo array que será adicionado.
+
+// COLLECTION PARA EXEMPLO
+// orders
+db.orders.insertMany([
+  { _id: 1, item: "almonds", price: 12, quantity: 2 },
+  { _id: 2, item: "pecans", price: 20, quantity: 1 },
+  { _id: 3 },
+]);
+
+// inventory
+db.inventory.insertMany([
+{ _id: 1, sku: "almonds", description: "product 1", instock: 120 },
+{ _id: 2, sku: "bread", description: "product 2", instock: 80 },
+{ _id: 3, sku: "cashews", description: "product 3", instock: 60 },
+{ _id: 4, sku: "pecans", description: "product 4", instock: 70 },
+{ _id: 5, sku: null, description: "Incomplete" },
+{ _id: 6 },
+]);
+
+// primeiro passo é achar o campo comum, neste caso 
+// na coleção orders o campo (item)
+// na coleção inventory o campo (sku)
+// Quando cruzados na operação a seguir, um novo campo,
+// chamado inventory_docs , será adicionado ao resultado final:
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "inventory",
+      localField: "item",
+      foreignField: "sku",
+      as: "inventory_docs",
+    },
+  },
+]);
+// as primeiras chaves são da colação orders
+// as dentro de inventory_docs são da 
+// coleção inventory
+
+// utilizando a collection agg_example
+// add dados para exercicio
+use("agg_example");
+db.clients.insertMany([
+  { name: "Dave America", State: "Florida" },
+  { name: "Ned Flanders", State: "Alasca" },
+  { name: "Mark Zuck", State: "Texas" },
+  { name: "Edna Krabappel", State: "Montana" },
+  { name: "Arnold Schuz", State: "California" },
+  { name: "Lisa Simpson", State: "Florida" },
+  { name: "Barney Gumble", State: "Texas" },
+  { name: "Homer Simpson", State: "Florida" },
+]);
+
+use("agg_example");
+db.transactions.find();
+// 1. Selecione todos os clientes com as
+// suas respectivas transações feitas;
+use("agg_example");
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "from",
+      as: "transactionsMade",
+    },
+  },
+]);
+// 2. Selecione quatro clientes com as
+// suas respectivas transações recebidas;
+use("agg_example");
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "to",
+      as: "transactionsReceived",
+    },
+  },
+  { $limit: 4 },
+]);
+
+// 3. Selecione todos os cliente do estado da "Florida"
+// e suas respectivas transações recebidas.
+use("agg_example");
+db.clients.aggregate([
+  { $match: { State: "Florida" } },
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "to",
+      as: "transactionsReceived",
+    },
+  },
+]);
