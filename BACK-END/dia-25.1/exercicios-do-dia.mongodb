@@ -133,6 +133,28 @@ db.vendas.findOne();
 
 // Exercício 9 : Descubra quais são os 10 clientes que
 // gastaram o maior valor no ano de 2019 .
+use('erp');
+db.vendas.aggregate([
+  { $match: {
+    dataVenda: {
+      $gte: new Date ("2019-01-01T00:00:00Z"),
+      $lte: new Date ("2019-12-31T23:59:59Z"),
+    },
+  } },
+  { $unwind: "$itens" },
+  {
+    $group: {
+      _id: "$clienteId",
+      gastoTotal: {
+        $sum: {
+          $multiply: ["$itens.valorUnitario", "$itens.quantidade"],
+        },
+      },
+    },
+  },
+  { $sort: { "gastoTotal": -1 } },
+  { $limit: 10 },
+]);
 
 // Exercício 10 : Descubra quantos clientes compraram mais de 5 vezes.
 // Retorne um documento que contenha somente o campo clientes com
