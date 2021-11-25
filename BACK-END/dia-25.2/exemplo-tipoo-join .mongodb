@@ -1,0 +1,34 @@
+// A operação a seguir junta todos os documentos da coleção orders
+// com a coleção warehouse através do campo item se a quantidade em
+// estoque ( instock ) for suficiente para cobrir a quantidade
+// vendida ( ordered ). Os documentos que dão match são colocados
+// no campo stockdata .
+
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "warehouses",
+      let: {
+        // criando variaveis a partir de orders
+        order_item: "$item",
+        order_qty: "$ordered",
+      },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $and: [
+                { $eq: [ "$stock_item", "$$order_item" ] },
+                // para referenciar tabela pai precisa de $$
+                { $gte: [ "$instock", "$$order_qty" ] },
+                // para referenciar tabela pai precisa de $$
+              ],
+            },
+          },
+        },
+        { $project: { stock_item: 0, _id: 0 } },
+      ],
+      as: "stockdata",
+    },
+  },
+]);
