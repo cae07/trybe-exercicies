@@ -1,0 +1,90 @@
+// Exercício 1: Utilizando o estágio $match , escreva uma agregação
+// para retornar somente os clientes do sexo "MASCULINO" .
+use('erp');
+db.clientes.aggregate([
+  { $match: { sexo: "MASCULINO" } },
+]);
+
+// Exercício 2: Utilizando o estágio $match , escreva uma agregação
+// para retornar somente os clientes do sexo "FEMININO" e com data
+// de nascimento entre os anos de 1995 e 2005.
+use('erp');
+db.clientes.aggregate([
+  { $match: {
+    sexo: "FEMININO",
+    "dataNascimento": {
+      $gte: new Date("1995-01-01T00:00:00Z"),
+      $lte: new Date("2005-01-01T00:00:00Z"),
+    },
+  } },
+  { $sort: { "dataNascimento": 1 } },
+  // Bonus particular, ordene por data
+]);
+
+// Exercício 3: Utilizando o estágio $match , escreva uma agregação
+// para retornar somente os clientes do sexo "FEMININO" e com data
+// de nascimento entre os anos de 1995 e 2005 , limitando a quantidade
+// de documentos retornados em 5.
+use('erp'),
+db.clientes.aggregate([
+  {
+    $match: {
+      sexo: "FEMININO",
+      dataNascimento: {
+        $gte: new Date ("1995-01-01T00:00:00Z"), $lte: new Date ("2005-01-01T00:00:00Z"),
+      },
+    },
+  },
+  { $limit: 5 },
+  { $sort: { nome: 1 } },
+  // bonus particular, ordene por nome
+]);
+
+// Exercício 4: Conte quantos clientes do estado SC existem na coleção.
+// Retorne um documento em que o campo _id contenha a UF e outro
+// campo com o total.
+use('erp');
+db.clientes.aggregate([
+  { $match: { "endereco.uf": "SC" } },
+  {
+    $group: {
+      _id: "$endereco.uf",
+      total: { $sum: 1 },
+    },
+  },
+]);
+
+// Exercício 5: Agrupe os clientes por sexo . Retorne o total de
+// clientes de cada sexo no campo total .
+use('erp');
+db.clientes.aggregate([
+  {
+    $group: {
+      _id: "$sexo",
+      total: { $sum: 1 },
+    },
+  },
+  { $sort: { total: -1 } },
+  // bonus particular - ordenar por total decrescente
+]);
+
+// Exercício 6: Agrupe os clientes por sexo e uf . Retorne o total
+// de clientes de cada sexo no campo total.
+use('erp');
+db.clientes.aggregate([
+  {
+    $group: {
+      _id: { end: "$endereco.uf", sex: "$sexo" },
+      total: { $sum: 1 },
+    },
+  },
+  { $sort: { "_id.end": 1 } },
+  // bonus particular - ordene por end
+]);
+
+use('erp');
+db.clientes.findOne();
+// Exercício 7 : Utilizando a mesma agregação do exercício anterior,
+// adicione um estágio de projeção para modificar os documentos de
+// saída, de forma que se pareçam com o documento a seguir
+// (não se importe com a ordem dos campos):

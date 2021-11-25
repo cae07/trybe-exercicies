@@ -1,0 +1,79 @@
+// EXEMPLOS PARA $project
+// COLLECTION PARA EXEMPLO
+db.books.insertOne(
+  {
+    _id: 1,
+    title: "A Fundação",
+    isbn: "0001122223334",
+    author: { last: "Asimov", first: "Isaac" },
+    copies: 5
+  }
+);
+
+// INCLUINDO CAMPOS ESPECIFICOS
+db.books.aggregate(
+  [{
+    $project: {
+      _id: 0,
+      // para não mostrar o id igual já era
+      title: 1,
+      author: 1,
+    },
+  }],
+);
+
+// EXCLUI SÓ O QUE NÃO QUER
+db.books.aggregate(
+  [
+    {
+      $project: {
+        isbn: 0,
+        // traz tudo exceto essa chave
+      },
+    },
+  ],
+);
+
+// EXCLUINDO CAMPOS DE SUBDOCUMENTOS
+db.books.aggregate(
+  [
+    {
+      $project: {
+        "author.last": 0,
+        // traz tudo menos o subdocumento last
+      },
+    },
+  ],
+);
+
+// INCLUINDO CAMPOS CALCULADOS
+// Lembre-se: esses novos campos são apenas adicionados para a visualização
+// final, não serão salvos no banco.
+
+db.books.aggregate([
+  {
+    $project: {
+      _id: 0,
+      title: 1,
+      isbn: {
+// quando quer apontar para chave, precisa incluir o "$"nomeDaChave
+        prefix: { $substr: [ "$isbn", 0, 3] },
+// cria chave prefix, na chave isbn, começando da posição 0, pega 3 valores
+        group: { $substr: ["$isbn", 3, 2] },
+// cria chave group na chave isbn, começando da posição 3, pega 2 valores
+        publisher: { $substr: ["$isbn", 5, 4] },
+// cria chave group na chave isbn, começando da posição 5, pega 4 valores
+        title: { $substr: ["$isbn", 9, 3] },
+// cria chave group na chave isbn, começando da posição 9, pega 3 valores
+        checkDigit: { $substr: ["$isbn", 12, 1] },
+// cria chave group na chave isbn, começando da posição 12 pega 1 valor
+      },
+      lastName: "$author.last",
+// cria chave lastName e acrescenta o valor do subdocumento last
+      copiesSold: "$copies",
+// cria chave copiesSold e acrescenta o valor de copies
+    },
+  },
+]);
+
+db.books.aggregate([])
