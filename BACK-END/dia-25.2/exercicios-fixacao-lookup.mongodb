@@ -1,0 +1,29 @@
+// EXERCICIOS UTILIZANDO O BD AGG_EXAMPLE
+// COLEÇÃO CLIENTS E TRANSACTIONS
+use('agg_example');
+db.clients.findOne();
+
+use('agg_example');
+db.transactions.findOne();
+
+// 1. Selecione todos os clientes com as suas respectivas transações feitas;
+use('agg_example');
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "from",
+      as: "transactions",
+    },
+  },
+  { $project: {
+    _id: 0,
+  } },
+]);
+
+// 2. Selecione os quatro primeiros clientes com as suas respectivas transações
+// recebidas ordenados pelo estado em ordem alfabética;
+
+// 3. Selecione todos os cliente do estado da "Florida" e suas respectivas
+// transações recebidas.
