@@ -8,7 +8,6 @@ db.clientes.aggregate([
 // Exercício 2: Utilizando o estágio $match , escreva uma agregação
 // para retornar somente os clientes do sexo "FEMININO" e com data
 // de nascimento entre os anos de 1995 e 2005.
-// bonus pra mim - classificar por data ascencente
 use('erp');
 db.clientes.aggregate([
   { $match: {
@@ -19,12 +18,27 @@ db.clientes.aggregate([
     },
   } },
   { $sort: { "dataNascimento": 1 } },
+  // Bonus particular, ordene por data
 ]);
 
 // Exercício 3: Utilizando o estágio $match , escreva uma agregação
 // para retornar somente os clientes do sexo "FEMININO" e com data
 // de nascimento entre os anos de 1995 e 2005 , limitando a quantidade
-// de documentos retornados em 5 .
+// de documentos retornados em 5.
+use('erp'),
+db.clientes.aggregate([
+  {
+    $match: {
+      sexo: "FEMININO",
+      dataNascimento: {
+        $gte: new Date ("1995-01-01T00:00:00Z"), $lte: new Date ("2005-01-01T00:00:00Z"),
+      },
+    },
+  },
+  { $limit: 5 },
+  { $sort: { nome: 1 } },
+  // bonus particular, ordene por nome
+]);
 
 // Exercício 4: Conte quantos clientes do estado SC existem na coleção.
 // Retorne um documento em que o campo _id contenha a UF e outro
