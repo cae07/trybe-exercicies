@@ -7,18 +7,19 @@ db.clientes.aggregate([
 
 // Exercício 2: Utilizando o estágio $match , escreva uma agregação
 // para retornar somente os clientes do sexo "FEMININO" e com data
-// de nascimento entre os anos de 1995 e 2005 .
+// de nascimento entre os anos de 1995 e 2005.
+// bonus pra mim - classificar por data ascencente
 use('erp');
 db.clientes.aggregate([
   { $match: {
     sexo: "FEMININO",
-    "dataNascimento.date": { $gte: "1995$", $lte: "2005$" },
+    "dataNascimento": {
+      $gte: new Date("1995-01-01T00:00:00Z"),
+      $lte: new Date("2005-01-01T00:00:00Z"),
+    },
   } },
+  { $sort: { "dataNascimento": 1 } },
 ]);
-
- "dataNascimento": {
-    "$date": "1981-09-24T03:30:42Z"
-  },
 
 // Exercício 3: Utilizando o estágio $match , escreva uma agregação
 // para retornar somente os clientes do sexo "FEMININO" e com data
