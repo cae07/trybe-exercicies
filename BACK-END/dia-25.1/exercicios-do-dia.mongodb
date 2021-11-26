@@ -204,3 +204,55 @@ db.vendas.aggregate([
   { $match: { "total": { $gte: 3 } } },
   { $count: "totalClients" },
 ]);
+
+// Exercício 12 : Descubra quais as três uf s que mais compraram no
+// ano de 2020 . Retorne os documentos no seguinte formato:
+// {
+//   "totalVendas": 10,
+//   "uf": "SP"
+// }
+use('erp');
+db.vendas.aggregate([
+  { $match: { dataVenda: {
+    $gte: new Date ("2020-01-01"),
+    $lte: new Date ("2020-12-31"),
+  } } },
+  {
+    $lookup: {
+      from: "clientes",
+      localField: "clienteId",
+      foreignField: "clienteId",
+      as: "transactionsMade"
+    },
+  },
+  { $group: {
+    _id: "$transactionsMade.endereco.uf",
+    count: { $sum: 1 },
+  } },
+  { $sort: { "count": -1 } },
+  { $limit: 3 },
+  { $unwind: "$_id" },
+  {
+    $project: {
+      _id: 0,
+      totalVendas: "$count",
+      uf: "$_id",
+    },
+  },
+]);
+
+// Exercício 13 : Encontre qual foi o total de vendas e a média de
+// vendas de cada uf no ano de 2019 . Ordene os resultados pelo nome
+// da uf . Retorne os documentos no seguinte formato:
+// {
+//   "uf": "MG",
+//   "mediaVendas": 9407.129225352113,
+//   "totalVendas": 142
+// }
+
+
+use('erp');
+db.vendas.findOne();
+
+use('erp');
+db.clientes.findOne();
