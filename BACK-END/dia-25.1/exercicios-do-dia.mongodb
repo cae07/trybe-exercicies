@@ -249,10 +249,36 @@ db.vendas.aggregate([
 //   "mediaVendas": 9407.129225352113,
 //   "totalVendas": 142
 // }
-
-
 use('erp');
-db.vendas.findOne();
-
-use('erp');
-db.clientes.findOne();
+db.vendas.aggregate([
+  { $match: { dataVenda: {
+    $gte: new Date ("2019-01-01"),
+    $lte: new Date ("2019-12-31T23:59:59Z"),
+  } } },
+  { $lookup: {
+    from: "clientes",
+    localField: "clienteId",
+    foreignField: "clienteId",
+    as: "transactionsMade",
+  } },
+  {
+    $group: {
+      _id: "$transactionsMade.endereco.uf",
+      count: { $sum: 1 },
+      media: {
+        $avg: {
+          $sum: "$valorTotal",
+        },
+      },
+    },
+  },
+  { $unwind: "$_id" },
+  {
+    $project: {
+      _id: 0,
+      uf: "$_id",
+      mediaDeVendas: "$media",
+      totalVendas: "$count",
+    },
+  },
+]);
