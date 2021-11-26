@@ -173,7 +173,16 @@ db.vendas.aggregate([
 // Retorne um documento que contenha somente o campo clientes com
 // o total de clientes.
 use('erp');
-db.
+db.vendas.aggregate([
+  {
+    $group: {
+      _id: "$clienteId",
+      count: { $sum: 1 },
+    },
+  },
+  { $match: { count: { $gt: 5 } } },
+  { $count: "clientes" },
+]);
 
 // Dica: O operador $count pode simplificar sua query .
 // Exercício 11 : Descubra quantos clientes compraram menos de três
