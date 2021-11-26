@@ -172,6 +172,7 @@ db.vendas.aggregate([
 // Exercício 10 : Descubra quantos clientes compraram mais de 5 vezes.
 // Retorne um documento que contenha somente o campo clientes com
 // o total de clientes.
+// Dica: O operador $count pode simplificar sua query .
 use('erp');
 db.vendas.aggregate([
   {
@@ -184,8 +185,22 @@ db.vendas.aggregate([
   { $count: "clientes" },
 ]);
 
-// Dica: O operador $count pode simplificar sua query .
 // Exercício 11 : Descubra quantos clientes compraram menos de três
 // vezes entre os meses de Janeiro de 2020 e Março de 2020.
 use('erp');
-db.
+db.vendas.aggregate([
+  { $match: {
+    dataVenda: {
+      $gte: new Date ("2020-01-01T00:00:00Z"),
+      $lte: new Date ("2020-03-31T23:59:59Z"),
+    },
+  } },
+  {
+    $group: {
+      _id: "$clienteId",
+      total: { $sum: 1 },
+    },
+  },
+  { $match: { "total": { $gte: 3 } } },
+  { $count: "totalClients" },
+]);
