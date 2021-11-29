@@ -1,0 +1,74 @@
+// Exemplo de $ceil => arredonda numeros para cima
+db.collection.aggregate([
+  {
+    $project: {
+      // nome do campo
+      roundedNumber: {
+        // valor
+        $ceil: <numero>,
+      },
+    },
+  },
+]);
+
+// Exemplo de $floor => arredonda numeros para baixo
+db.collection.aggregate([
+  {
+    $project: {
+      value: 1,
+      roundedNumber: {
+        $floor: <numero>,
+      },
+    },
+  },
+]);
+
+// Exemplo de $abs => retorna numero absoluto, ou seja, positivo
+db.collection.aggregate([
+  {
+    project: {
+      // nome do campo que quiser
+      <campo>: {
+        // pode fazer op matematicas para retornar novo valo, ex
+        $abs: <numero>,
+      },
+    },
+  },
+]);
+
+// Exemplo de $multiply => multiplica valores
+db.collection.aggregate([
+  {
+project: {
+      <campo>: {
+multiply: [ <expressão1>, <expressão2>, ... ]
+      },
+    },
+  },
+]);
+// exemplo
+db.operations.aggregate([
+  {
+    $project: {
+      date: 1,
+      item: 1,
+      total: {
+        $multiply: [
+          "$price",
+          "$quantity"
+        ]
+      },
+    },
+  },
+]);
+
+// exemplo de $divide => divide numeros
+db.collection.aggregate([
+  {
+    $project: {
+      <campo>: {
+        $divide: [ <dividendo>, <divisor> ]
+      },
+    },
+  },
+]);
