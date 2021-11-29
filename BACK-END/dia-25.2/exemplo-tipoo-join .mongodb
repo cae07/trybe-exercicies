@@ -16,9 +16,12 @@ db.orders.aggregate([
       pipeline: [
         {
           $match: {
+          // para dar o match
             $expr: {
+            // aonde
               $and: [
-                { $eq: [ "$stock_item", "$$order_item" ] },
+              // essas duas condições sejam TRUE
+                { $eq: [ "$stock_item", "$$order_item" ] }, 
             // para referenciar variaveis def em let precisa de $$
                 { $gte: [ "$instock", "$$order_qty" ] },
             // para referenciar variaveis def em let precisa de $$
@@ -27,7 +30,7 @@ db.orders.aggregate([
           },
         },
         { $project: { stock_item: 0, _id: 0 } },
-        // exclui esses campos da coleção warehouse
+        // exclui esses campos da coleção warehouse e traz todo o resto
       ],
       as: "stockdata",
     },
