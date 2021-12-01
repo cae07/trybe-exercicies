@@ -10,7 +10,7 @@
 function calcula(num1, num2, num3) {
   
   const promise = new Promise((resolve, reject) =>{
-    if((typeof num1 !== "number") || (typeof num1 !== "number") || (typeof num3 !== "number")) {
+    if((typeof num1 !== "number") || (typeof num2 !== "number") || (typeof num3 !== "number")) {
       reject(new Error("Não é permitido valores não numéricos"));
     };
 
@@ -23,4 +23,6 @@ function calcula(num1, num2, num3) {
   return promise;
 };
 
-console.log(calcula(10, 2, 13));
+calcula(10, 2, 1)
+  .then((response) => console.log(response))
+  .catch((error) => console.log(error.message));
