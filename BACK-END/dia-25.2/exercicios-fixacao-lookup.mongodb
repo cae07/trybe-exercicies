@@ -18,12 +18,41 @@ db.clients.aggregate([
     },
   },
   { $project: {
-    _id: 0,
+    _id: 0, "transactions._id": 0
   } },
 ]);
 
 // 2. Selecione os quatro primeiros clientes com as suas respectivas transações
 // recebidas ordenados pelo estado em ordem alfabética;
+use('agg_example');
+db.clients.aggregate([
+  { $lookup: {
+    from: 'transactions',
+    localField: 'name',
+    foreignField: 'to',
+    as: 'transactions_received',
+  } },
+  { $limit: 4 },
+  { $sort: { 'state': 1 } },
+  { $project: {
+    _id: 0, "transactions_received._id": 0,
+  } },
+]);
 
 // 3. Selecione todos os cliente do estado da "Florida" e suas respectivas
 // transações recebidas.
+use('agg_example');
+db.clients.aggregate([
+  { $match: { State: "Florida" } },
+  {
+  $lookup: {
+    from: 'transactions',
+    localField: 'name',
+    foreignField: 'to',
+    as: 'transactions_received',
+  } },
+  { $project: {
+    _id: 0,
+    "transactions_received._id": 0,
+  } }, 
+]);
