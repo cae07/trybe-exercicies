@@ -9,7 +9,7 @@
 
 function calcula(num1, num2, num3) {
   
-  const promise = new Promise((resolve, reject) =>{
+  const promise = new Promise((resolve, reject) => {
     if((typeof num1 !== "number") || (typeof num2 !== "number") || (typeof num3 !== "number")) {
       reject(new Error("Não é permitido valores não numéricos"));
     };
@@ -32,10 +32,27 @@ function calcula(num1, num2, num3) {
 
 // 2.3.1 - Caso a Promise seja rejeitada, escreva na tela o motivo da rejeição.
 // 2.3.2 - Caso a Promise seja resolvida, escreva na tela o resultado do cálculo.
-function randomNumber() {
-  const num1 = Math.floor(Math.random() * 100 + 1);
-  const num2 = Math.floor(Math.random() * 100 + 1);
-  const num3 = Math.floor(Math.random() * 100 + 1);
+// function randomNumber() {
+//   const num1 = Math.floor(Math.random() * 100 + 1);
+//   const num2 = Math.floor(Math.random() * 100 + 1);
+//   const num3 = Math.floor(Math.random() * 100 + 1);
+
+//   console.log(`num1 = ${num1}`);
+//   console.log(`num2 = ${num2}`);
+//   console.log(`num3 = ${num3}`);
+
+//   calcula(num1, num2, num3)
+//     .then((result) => console.log(result))
+//     .catch((err) => console.log(err.message));
+// };
+
+// randomNumber()
+
+// 3. Reescreva o código do exercício anterior para que utilize async/await
+async function randomNumber() {
+  const num1 = await Math.floor(Math.random() * 100 + 1);
+  const num2 = await Math.floor(Math.random() * 100 + 1);
+  const num3 = await Math.floor(Math.random() * 100 + 1);
 
   console.log(`num1 = ${num1}`);
   console.log(`num2 = ${num2}`);
@@ -47,5 +64,3 @@ function randomNumber() {
 };
 
 randomNumber()
-
-

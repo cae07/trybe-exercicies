@@ -1,27 +1,27 @@
-const fs = require('fs');
-// módulo nativo do node para realizar a leitura de arquivo
+// const fs = require('fs');
+// // módulo nativo do node para realizar a leitura de arquivo
 
-function readFilePromise (fileName) {
-  return new Promise((resolve, reject) => {
+// function readFilePromise (fileName) {
+//   return new Promise((resolve, reject) => {
 
-    fs.readFile(fileName, (err, content) => {
-      if(err) return reject(err);
-      resolve(content);
-    });
-  });
-};
+//     fs.readFile(fileName, (err, content) => {
+//       if(err) return reject(err);
+//       resolve(content);
+//     });
+//   });
+// };
 
-// exemplo de como podemos consumir a Promise
-// que estamos retornando da nossa função logo acima
-// ...
+// // exemplo de como podemos consumir a Promise
+// // que estamos retornando da nossa função logo acima
+// // ...
 
-readFilePromise('./file.txt') // A função me promete que vai ler o arquivo
-  .then((content) => { // Caso ela cumpra o que prometeu
-    console.log(`Lido arquivo com ${content.byteLength} bytes`); // Escrevo o resultado no console
-  })
-  .catch((err) => { // Caso ela não cumpra o que prometeu
-    console.error(`Erro ao ler arquivo: ${err.message}`); // Escrevo o erro no console
-  });
+// readFilePromise('./file.txt') // A função me promete que vai ler o arquivo
+//   .then((content) => { // Caso ela cumpra o que prometeu
+//     console.log(`Lido arquivo com ${content.byteLength} bytes`); // Escrevo o resultado no console
+//   })
+//   .catch((err) => { // Caso ela não cumpra o que prometeu
+//     console.error(`Erro ao ler arquivo: ${err.message}`); // Escrevo o erro no console
+//   });
 
 
 // Essa funcionalidade nos permite criar estruturas de pipeline
