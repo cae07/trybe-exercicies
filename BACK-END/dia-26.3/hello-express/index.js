@@ -9,7 +9,7 @@ app.listen(3001, () => {
 }); // 3
 
 function handleHelloWorldRequest(req, res) {
-  res.status(200).send('Hello World!'); // 4
+  res.status(200).send('Olá mundo! Eu sou o Caê'); // 4
 };
 
 // Esse pequeno script é o suficiente para:
