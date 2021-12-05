@@ -63,4 +63,5 @@ async function randomNumber() {
     .catch((err) => console.log(err.message));
 };
 
-randomNumber()
+randomNumber();
+
