@@ -1,5 +1,6 @@
 function setTimeWithPromise() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
+    // quando não utilizar um parametro, colocar underline, como nesse caso o _reject
     setTimeout(() => {
         console.log("dentro do set com promise");
         resolve();
