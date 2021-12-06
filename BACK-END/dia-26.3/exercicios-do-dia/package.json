@@ -1,0 +1,16 @@
+{
+  "name": "exercicios-do-dia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exercicios.js",
+  "scripts": {
+    "test": "mocha exercicios.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3",
+    "sinon": "^12.0.1"
+  }
+}
