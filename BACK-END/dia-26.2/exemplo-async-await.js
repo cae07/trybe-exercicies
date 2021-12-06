@@ -1,16 +1,26 @@
 function setTimeWithPromise() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-        console.log("dentro do set com promise");
+        console.log("dentro do primeiro set time out");
         resolve();
     }, 3000);
   });
 };
 
-async function main() {
+const setPromise = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("dentro do segundo set time out");
+      resolve();
+    }, 1000);
+  });
+};
+
+function main() {
   console.log("começo da function main");
 
-  await setTimeWithPromise();
+  setTimeWithPromise();
+  setPromise();
 
   console.log("fim function main");
 };
