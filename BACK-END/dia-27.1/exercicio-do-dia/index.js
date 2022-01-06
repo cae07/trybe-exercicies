@@ -2,6 +2,7 @@ const express = require('express');
 
 const { validateExistsAllFields, validatePassword } = require('./Service/validate.users');
 const { findAll, createNewUser } = require('./Models/users');
+const { findUser, updateById } = require('./Service/FindUsers');
 
 const app = express();
 const PORT = 3000;
@@ -40,3 +41,22 @@ app
 
     return res.status(201).json(response)
   });
+
+app
+  .route('/user/:id')
+  .get( async (req, res) => {
+    const { id } = req.params;
+    const response = await findUser(id);
+
+    return res.status(200).json(response);
+  })
+  .put( async (req, res) => {
+    const { id } = req.params;
+    const newUserData = req.body;
+    
+    await updateById(id, newUserData);
+    const { firstName, lastName, email } = newUserData;
+
+    const newUser = { id, firstName, lastName, email };
+    return res.status(200).json(newUser);
+  })
