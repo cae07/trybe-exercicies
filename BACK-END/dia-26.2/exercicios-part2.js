@@ -3,9 +3,10 @@
 const fs = require('fs');
 const axios = require('axios');
 
+const url = "./simpsons.json";
 
 async function lerSimpsons() {
-  const getSimpsons = await axios.get('./simpsons.json');
+  const getSimpsons = await axios.get(url);
   console.log(getSimpsons.name);
   // try {
   //   const data = getSimpsons.forEach((simpson) => console.log(simpson));
