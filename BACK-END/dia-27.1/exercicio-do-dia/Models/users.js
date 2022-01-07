@@ -14,22 +14,16 @@ const findAll = async () => {
 };
 
 const createNewUser = async (firstName, lastName, email, password) => {
-  try {
-    const db = await connection();
-    const response = await db.collection('usuarios').insertOne({
-      firstName, lastName, email, password,
-    });
-  
-    const id = ObjectId(response.insertedId);
-    const newUser = {
-      id, firstName, lastName, email,
-    };
-  
-    return newUser;    
-  } catch (error) {
-    console.error(error.message);
-    return ({ message: "internal Error" });      
-  }
+  const db = await connection();
+  const { insertedId } = await db.collection('usuarios').insertOne({
+    firstName, lastName, email, password,
+  });
+
+  const newUser = {
+    id: insertedId, firstName, lastName, email,
+  };
+
+  return newUser;
 };
 
 const findById = async (id) => {
@@ -62,7 +56,7 @@ const updateUserById = async (id, body) => {
       }
     );
 
-    return response;
+    return response.upsertedId;
   } catch (error) {    
     console.error(error.message);
     return ({ message: "internal Error" });    

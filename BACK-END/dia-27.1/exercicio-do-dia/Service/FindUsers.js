@@ -11,7 +11,7 @@ const findUser = async (id) => {
   return userById;
 };
 
-const updateById = async (id, body) => {
+const updateById = async (id, body, next) => {
   const { firstName, lastName, email, password } = body;
   if (!firstName || !lastName || !email || !password) {
     return {
@@ -24,6 +24,8 @@ const updateById = async (id, body) => {
     "message": "O campo 'password' deve ter pelo menos 6 caracteres"
   }
   const response = await updateUserById(id, body);
+
+  if (!response) return next({ error: "usuário não encontrado"});
   return response;
 };
 
