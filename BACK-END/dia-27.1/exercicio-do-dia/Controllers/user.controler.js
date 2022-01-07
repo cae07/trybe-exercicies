@@ -1,4 +1,5 @@
 const { validateExistsAllFields, validatePassword } = require('../Service/validate.users');
+const { findUser, updateById } = require('../Service/FindUsers');
 const { createNewUser } = require('../Models/users');
 
 
@@ -19,6 +20,35 @@ const userCreate = async (req, res, next) => {
   }
 };
 
+const userById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const response = await findUser(id);
+
+    return res.status(200).json(response); 
+  } catch (error) {
+    return next(error);
+  }
+}
+
+const userIdToUpdate = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const newUserData = req.body;
+
+    await updateById(id, newUserData);
+    
+    const { firstName, lastName, email } = newUserData;
+    const newUser = { id, firstName, lastName, email };
+
+    return res.status(200).json(newUser);    
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   userCreate,
+  userById,
+  userIdToUpdate,
 };

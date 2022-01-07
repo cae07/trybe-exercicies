@@ -3,30 +3,27 @@ const { findById, updateUserById } = require('../Models/users');
 const findUser = async (id) => {
   const userById = await findById(id);
 
-  if(!userById) return {
-    "error": true,
+  if(!userById) throw {
+    "status": 400,
     "message": "Usuário não encontrado"
 };
 
   return userById;
 };
 
-const updateById = async (id, body, next) => {
+const updateById = async (id, body) => {
   const { firstName, lastName, email, password } = body;
   if (!firstName || !lastName || !email || !password) {
-    return {
-      "error": true,
+    throw {
+      "status": 400,
       "message": "Todos os campos precisam ser preenchidos."
     };
   }
-  if (password < 6) return {
-    "error": true,
+  if (password < 6) throw {
+    "status": 400,
     "message": "O campo 'password' deve ter pelo menos 6 caracteres"
   }
-  const response = await updateUserById(id, body);
-
-  if (!response) return next({ error: "usuário não encontrado"});
-  return response;
+  await updateUserById(id, body);
 };
 
 module.exports = {

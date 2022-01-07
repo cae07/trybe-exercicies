@@ -28,39 +28,27 @@ const createNewUser = async (firstName, lastName, email, password) => {
 
 const findById = async (id) => {
   const convertedId = ObjectId(id);
-  try {
-    const db = await connection();
-    const response = await db.collection('usuarios').findOne({ _id: convertedId });
+  const db = await connection();
+  const response = await db.collection('usuarios').findOne({ _id: convertedId });
 
-    return response;
-  } catch (error) {
-    console.error(error.message);
-    return ({ message: "internal Error" });      
-  }
+  return response;
 };
 
-const updateUserById = async (id, body) => {
+const updateUserById = async (id, { firstName, lastName, email, password }) => {
   const convertedId = ObjectId(id);
-  const { firstName, lastName, email, password } = body;
-  try {
-    const db = await connection();
-    const response = await db.collection('usuarios').updateOne(
-      { _id: convertedId },
-      {
-        $set: {
-          firstName,
-          lastName,
-          email,
-          password,
-        }
-      }
-    );
+  const db = await connection();
 
-    return response.upsertedId;
-  } catch (error) {    
-    console.error(error.message);
-    return ({ message: "internal Error" });    
-  }
+  const response = await db.collection('usuarios').updateOne(
+    { _id: convertedId },
+    {
+      $set: {
+        firstName,
+        lastName,
+        email,
+        password,
+      }
+    }
+  );
 }
 
 module.exports = {

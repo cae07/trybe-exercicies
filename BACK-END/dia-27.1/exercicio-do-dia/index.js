@@ -1,8 +1,7 @@
 const express = require('express');
 
-const { userCreate } = require('./Controllers/user.controler');
+const { userCreate, userById, userIdToUpdate } = require('./Controllers/user.controler');
 const { findAll, createNewUser } = require('./Models/users');
-const { findUser, updateById } = require('./Service/FindUsers');
 const errorMiddleware = require('./Middleware/errorMiddleware');
 
 const app = express();
@@ -24,22 +23,12 @@ app
 
 app
   .route('/user/:id')
-  .get( async (req, res) => {
-    const { id } = req.params;
-    const response = await findUser(id);
-
-    return res.status(200).json(response);
+  .get( async (req, res, next) => {
+    userById(req, res, next);
   })
-  .put( async (req, res) => {
-    const { id } = req.params;
-    const newUserData = req.body;
-
-    await updateById(id, newUserData);
-    const { firstName, lastName, email } = newUserData;
-
-    const newUser = { id, firstName, lastName, email };
-    return res.status(200).json(newUser);
-  })
+  .put( async (req, res, next) => {
+    userIdToUpdate(req, res, next);
+  });
 
 app.use(errorMiddleware);
 
