@@ -14,25 +14,46 @@ const findAll = async () => {
 };
 
 const createNewUser = async (firstName, lastName, email, password) => {
-  try {
-    const db = await connection();
-    const response = await db.collection('usuarios').insertOne({
-      firstName, lastName, email, password,
-    });
-  
-    const id = ObjectId(response.insertedId);
-    const newUser = {
-      id, firstName, lastName, email,
-    };
-  
-    return newUser;    
-  } catch (error) {
-    console.error(error.message);
-    return res.status(500).json({ message: "internal Error" });    
-  }
+  const db = await connection();
+  const { insertedId } = await db.collection('usuarios').insertOne({
+    firstName, lastName, email, password,
+  });
+
+  const newUser = {
+    id: insertedId, firstName, lastName, email,
+  };
+
+  return newUser;
 };
+
+const findById = async (id) => {
+  const convertedId = ObjectId(id);
+  const db = await connection();
+  const response = await db.collection('usuarios').findOne({ _id: convertedId });
+
+  return response;
+};
+
+const updateUserById = async (id, { firstName, lastName, email, password }) => {
+  const convertedId = ObjectId(id);
+  const db = await connection();
+
+  const response = await db.collection('usuarios').updateOne(
+    { _id: convertedId },
+    {
+      $set: {
+        firstName,
+        lastName,
+        email,
+        password,
+      }
+    }
+  );
+}
 
 module.exports = {
   findAll,
   createNewUser,
+  findById,
+  updateUserById,
 };
