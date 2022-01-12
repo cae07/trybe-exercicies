@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { userCreate, userById, userIdToUpdate } = require('./Controllers/user.controler');
-const { findAll, createNewUser } = require('./Models/users');
+const { findAll } = require('./Models/users');
 const errorMiddleware = require('./Middleware/errorMiddleware');
 
 const app = express();
