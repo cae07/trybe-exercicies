@@ -42,3 +42,6 @@ const secret = 'MinhaSenhaMuitoComplexa123';
 const assinatura = hmac(`${base64(header)}.${base64(payload)}`, secret);
 
 const token = `${base64(header)}.${base64(payload)}.${base64(assinatura)}`;
+
+// O resultado terá a seguinte estrutura:
+// (Header em base64).(Payload em base64).(Signature em base64)
