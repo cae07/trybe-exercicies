@@ -71,3 +71,5 @@ del people_by_id[1]
 
 print(people_by_id.items())  # dict_items([(1, "Cássio"), (2, "João"), (3, "Felipe")])
 # um conjunto é retornado com tuplas contendo chaves e valores
+
+people_by_id.update({"chave": "valor"}) # atualizar a lista
