@@ -1,14 +1,9 @@
-fruits = ["banana", "maçã", "pera"]
+# EXERCICIOS DE FIXAÇÃO
+trybe_course = ["Introdução", "Front-end", "Back-end"]
 
-print(fruits)
+# Exercício 5: Adicione o elemento "Ciência da Computação" à lista.
+trybe_course.append("Ciência da Computação")
+# Exercício 6: Acesse e altere o primeiro elemento da lista para "Fundamentos".
+trybe_course[0].replace("Introdução", "Fundamentos")
 
-fruits.append('laranja')
-print(fruits)
-
-fruits.extend(["lima", 'abacaxi', 'uva'])
-print(fruits)
-
-fruits.sort()
-print(fruits)
-# number=[n for n in range(1, 11)]
-# print(number)
+print(trybe_course)
