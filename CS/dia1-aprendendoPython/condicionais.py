@@ -12,4 +12,4 @@ elif 7500 < salary < 10000: # salary < 10000 => também funciona
 else:
     position = "lider"
 
-print(position);
+print(position)
