@@ -29,7 +29,7 @@ info = {
 }
 
 # Exercício 8: O que acontecerá se você tentar acessar o valor da chave "personagem" como fazíamos em JavaScript, utilizando object.key ?
-#print(object.key(info)) # AttributeError: type object 'object' has no attribute 'key'
+#print(object.keys(info)) # AttributeError: type object 'object' has no attribute 'key'
 
 # Exercício 9: Insira no objeto uma nova propriedade com o nome de chave "recorrente" e o valor "Sim". Em seguida, imprima o objeto no console.
 info.update({"recorrente": "sim"})
@@ -38,3 +38,16 @@ print(info)
 # Exercício 10: Remova a propriedade cuja chave é "origem" e imprima o objeto no console.
 del info["origem"]
 print(info)
+
+# Exercício 11: Após uma consulta do banco de dados, temos linhas que contém nome,
+# sobrenome e idade como: "Thiago", "Nobre", 29 . Que estrutura vista anteriormente
+# seria recomendada dado que após esta consulta somente exibimos estes valores.
+
+# estrutura seria tuplas ("Thiago", "Nobre", 29)
+
+
+#Exercício 12: Realizar a contagem de quantas vezes cada elemento aparece
+# em uma sequência é uma técnica muito útil na solução de alguns problemas.
+# Qual é a estrutura mais recomendada para o armazenamento desta contagem?
+
+# for in
