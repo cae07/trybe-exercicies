@@ -13,7 +13,7 @@ finally:
     # será sempre executado, independentemente de erro
     print("Tentativa de abrir arquivo")
 
-######## utilizando um contexto para limitar escopo ###########
+# utilizando um contexto para limitar escopo ###########
 
 # Criamos um contexto, limitando o escopo onde o arquivo está aberto.
 # O uso do "as" aqui é somente para atribuir o valor utilizado no contexto à variável file
