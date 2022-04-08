@@ -6,7 +6,8 @@ import requests
 # selector = Selector(text=response.text)
 
 # Extrai todos os preços da primeira página depois vamos tirar o simbolo estranho que vem junto com o dado
-# utilizamos o .re no lugar do .get() para usar o regex e limpar os dados
+# utilizamos o .re no lugar do .getall() para usar o regex e limpar os dados
+# utilizamos o .re_first no lugar do .get() para usar o regex e limpar o dado
 # queremos que começe com "£" seguido de numeros, depois um "." seguido de duas casas decimais
 # prices = selector.css(".product_price .price_color::text").re(r"£\d+\.\d{2}")
 # print(prices)
