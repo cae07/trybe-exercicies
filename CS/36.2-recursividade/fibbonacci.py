@@ -1,15 +1,23 @@
 # Faça uma função que retorne o enésimo número da sequência de Fibonacci.
 
-def fibbonacci(n):
-    fibo = [0, 1, 1]
+# def fibonacci(n):
+#     fibo = [0, 1, 1]
 
-    while len(fibo) < n:
-        next = fibo[-1] + fibo[-2]
-        fibo.append(next)
+#     while len(fibo) < n:
+#         next = fibo[-1] + fibo[-2]
+#         fibo.append(next)
     
-    print(fibo)
+#     print(fibo)
+
+
+# solução com recursividade
+def fibonacci(n):
+    if n < 2:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
 
 
 if __name__ == "__main__":
-    fibbonacci(5)
-    fibbonacci(15)
+    # print(fibonacci(5))
+    print(fibonacci(15))
