@@ -35,7 +35,12 @@ const losangle = (D: number, d: number): number => {
   return (D * d) / 2;
 }
 
+const trapezie = (height: number, B: number, b: number): number => {
+  return ((B + b) * height) / 2;
+}
+
 export {
   rectangle,
   losangle,
+  trapezie,
 };
