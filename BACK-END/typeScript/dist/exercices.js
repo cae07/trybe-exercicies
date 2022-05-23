@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.losangle = exports.rectangle = exports.square = exports.triangle = exports.sumArray = exports.add = exports.personAge = exports.greeter = void 0;
+exports.circle = exports.trapezie = exports.losangle = exports.rectangle = exports.square = exports.triangle = exports.sumArray = exports.add = exports.personAge = exports.greeter = void 0;
 function greeter(name) {
     return `Olá ${name}`;
 }
@@ -38,3 +38,12 @@ const losangle = (D, d) => {
     return (D * d) / 2;
 };
 exports.losangle = losangle;
+const trapezie = (height, B, b) => {
+    return ((B + b) * height) / 2;
+};
+exports.trapezie = trapezie;
+const circle = (raio) => {
+    const PI = 3.14;
+    return (raio ** 2) * PI;
+};
+exports.circle = circle;
