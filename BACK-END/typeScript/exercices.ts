@@ -1,3 +1,5 @@
+import { pipeline } from "stream";
+
 export function greeter(name: string): string {
   return `Olá ${name}`;
 }
@@ -39,8 +41,14 @@ const trapezie = (height: number, B: number, b: number): number => {
   return ((B + b) * height) / 2;
 }
 
+const circle = (raio: number) : number => {
+  const PI = 3.14;
+  return (raio ** 2) * PI;
+}
+
 export {
   rectangle,
   losangle,
   trapezie,
+  circle,
 };
