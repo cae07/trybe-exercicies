@@ -6,3 +6,10 @@ export function personAge(name: string, age: number): string {
   return `${name} tem ${age} anos de idade.`;
 }
 
+export function add(x: number, y: number): number {
+  return x + y;
+}
+
+export function sumArray(numbers: number[]): number {
+  return numbers.reduce(add, 0);
+}
