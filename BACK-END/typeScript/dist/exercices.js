@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rectangle = exports.square = exports.triangle = exports.sumArray = exports.add = exports.personAge = exports.greeter = void 0;
+exports.losangle = exports.rectangle = exports.square = exports.triangle = exports.sumArray = exports.add = exports.personAge = exports.greeter = void 0;
 function greeter(name) {
     return `Olá ${name}`;
 }
@@ -34,3 +34,7 @@ const rectangle = (base, height) => {
     return base * height;
 };
 exports.rectangle = rectangle;
+const losangle = (D, d) => {
+    return (D * d) / 2;
+};
+exports.losangle = losangle;
