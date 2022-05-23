@@ -31,6 +31,11 @@ const rectangle = (base: number, height: number): number => {
   return base * height;
 }
 
+const losangle = (D: number, d: number): number => {
+  return (D * d) / 2;
+}
+
 export {
-  rectangle
+  rectangle,
+  losangle,
 };
