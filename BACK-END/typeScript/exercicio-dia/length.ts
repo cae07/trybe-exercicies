@@ -23,7 +23,7 @@ function getExponent(base: string, convertTo: string): number {
   return getBaseIndex - getToIndex;
 }
 
-function convert(valor: number, base: string, convertTo: string): number {
+export function convert(valor: number, base: string, convertTo: string): number {
   verifyUnits(base);
   verifyUnits(convertTo);
   const exponent: number = getExponent(base, convertTo);
