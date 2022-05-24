@@ -9,13 +9,16 @@ function validateUnity(unity: string): boolean {
   return true;
 }
 
+function getExponent(from: string, to: string): number {
+  const indexFrom: number = units.indexOf(from);
+  const indexTo: number = units.indexOf(to);
+  return indexFrom - indexTo;
+}
+
 export function convert(valor: number, from: string, to: string): number {
   validateUnity(from);
   validateUnity(to);
-
-  const indexFrom: number = units.indexOf(from);
-  const indexTo: number = units.indexOf(to);
-  const exponent: number = indexFrom - indexTo;
-
+  const exponent: number = getExponent(from, to);
+  
   return valor * Math.pow(10, exponent);
 }
