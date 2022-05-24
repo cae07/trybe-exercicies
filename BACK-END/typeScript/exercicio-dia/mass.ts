@@ -4,9 +4,14 @@ function notExistError(unity: string): Error {
   throw new Error(`O valor ${unity} não é uma unidade válida.`);
 }
 
+function validateUnity(unity: string): boolean {
+  if (!units.includes(unity)) notExistError(unity);
+  return true;
+}
+
 export function convert(valor: number, from: string, to: string): number {
-  if (!units.includes(from)) notExistError(from);
-  if (!units.includes(to)) notExistError(from);
+  validateUnity(from);
+  validateUnity(to);
 
   const indexFrom: number = units.indexOf(from);
   const indexTo: number = units.indexOf(to);
