@@ -27,9 +27,20 @@ enum RaimbowColors {
 }
 
 // Crie uma Enum que represente as ações: salvar, imprimir, abrir, visualizar e fechar. Seu valor deve ser do tipo inteiro.
-
+enum Actions {
+  salvar = 1,
+  imprimir,
+  abrir,
+  visualizar,
+  fechar
+}
 
 
 // Crie uma Enum que represente os pontos cardeais: Norte, Leste, Sul e Oeste. Seu valor deve ser a primeira letra do nome do ponto cardial.
-
+enum Cardinals {
+  Norte = "N",
+  Leste = "L",
+  Sul = "S",
+  Oeste = "O",
+}
 
