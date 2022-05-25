@@ -5,11 +5,11 @@
 // - valor - number
 // - unidade base - string
 // - unidade para a conversão - string
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.convert = void 0;
-var units = ["km", "hm", "dam", "m", "dm", "cm", "mm"];
+const units = ["km", "hm", "dam", "m", "dm", "cm", "mm"];
 function typeNotExist(unity) {
-    throw new Error("O valor ".concat(unity, " n\u00E3o \u00E9 uma unidade v\u00E1lida."));
+    throw new Error(`O valor ${unity} não é uma unidade válida.`);
 }
 function verifyUnits(unity) {
     if (!units.includes(unity))
@@ -17,14 +17,14 @@ function verifyUnits(unity) {
     return true;
 }
 function getExponent(base, convertTo) {
-    var getBaseIndex = units.indexOf(base);
-    var getToIndex = units.indexOf(convertTo);
+    const getBaseIndex = units.indexOf(base);
+    const getToIndex = units.indexOf(convertTo);
     return getBaseIndex - getToIndex;
 }
 function convert(valor, base, convertTo) {
     verifyUnits(base);
     verifyUnits(convertTo);
-    var exponent = getExponent(base, convertTo);
+    const exponent = getExponent(base, convertTo);
     return valor * Math.pow(10, exponent);
 }
 exports.convert = convert;
