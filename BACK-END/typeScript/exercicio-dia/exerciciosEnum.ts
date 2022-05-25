@@ -15,9 +15,6 @@ const quartaFeiraString = DaysOfWeek[4]; // saida => quarta
 console.log(quartaFeira);
 console.log(quartaFeiraString);
 
-
-
-
 // Crie uma Enum que represente as cores do arco iris. Seu valor deve ser o nome das cores em português.
 
 
