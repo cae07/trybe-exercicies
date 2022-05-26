@@ -4,6 +4,8 @@ import Book from "../interfaces/Book";
 
 const router = Router();
 
+const NotFoundMessage = "Livro não encontrado.";
+
 router.get("/books", async (req: Request, res: Response) => {
   const data = await fs.readFile("./books.json", "utf8");
 
@@ -12,8 +14,18 @@ router.get("/books", async (req: Request, res: Response) => {
   return res.status(200).json(books);
 });
 
-router.get("/books/:isbn", (req: Request, res: Response) => {
+router.get("/books/:isbn", async (req: Request, res: Response) => {
+  const { isbn } = req.params;
 
+  const data = await fs.readFile("./books.json", "utf8");
+
+  const books: Book[] = JSON.parse(data);
+
+  const book = books.find((book) => book.isbn === isbn);
+
+  if (!book) return res.status(404).send(NotFoundMessage);
+
+  return res.status(200).json(book);
 });
 
 router.post("/books", (req: Request, res: Response) => {
